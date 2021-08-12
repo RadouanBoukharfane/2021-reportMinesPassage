@@ -318,6 +318,7 @@ The data used in this work is regarding a horizontal pipe case for Water-Sand sl
 \label{Model}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In the two-fluid Eulerian-Eulerian approach, each phase is described by a set of averaged conservation equations.
+%
 The present formulation follows \cite{elkarii2020towards,passalacqua2011implementation}.
 %
 A general discussion of how such models are derived via averaging can be found in \cite{drew2006theory}.
@@ -379,11 +380,16 @@ For the drag coefficient, the solid particle drag model of \citet{wen1966general
 where $\mathcal{R}\mathfrak{e}=\varrho_{\mathfrak{s}}\|\mathfrak{u}_{\mathfrak{r}}\|\mathrm{d}_{\mathfrak{s}}/\mu_{\mathfrak{s}}$ is the Reynolds number bases on the particle diameter $\mathrm{d}_{\mathfrak{s}}$ and the relative velocity $\boldsymbol{\mathfrak{u}}_{\mathfrak{r}}=\boldsymbol{\mathfrak{u}}_{\mathfrak{w}}-\boldsymbol{\mathfrak{u}}_{\mathfrak{s}}$. For virtual mass coefficient 
 $\mathcal{C}_{\mathrm{d}}$, a fixed value of $0.5$ is used throughout the present study \cite{auton1988force}.
 %%%%%%%%%%%
-
-
-The solid phase is modelled in this Eulerian framework as an interpenetrating fluid but with a viscosity that is determined by the kinetic theory of granular flows 
+The solid phase is modelled in this Eulerian framework as an interpenetrating fluid but with a viscosity that is determined by the kinetic theory of granular flows.
+%
 \subsubsection{Solid-phase viscosity}
-Solid-phase viscosity is determined using Kinetic Theory of Granular flows(KTFG) which is based on the kinetic theory of gases in a generalized way to take into account collisions of inelastic particles to define a granular temperature $\theta$ in solid phase which directly affects the phase stress tensor (\cite{Gonzalez-2017}). Analogical to the thermodynamic temperature for gases, the granular temperature $\Theta=\frac{1}{3}<v_{s}^{\prime 2}>$ was introduced as a measure for the energy of the fluctuating velocity of the particles  Lun et al. 1987.
+%
+Solid-phase viscosity is determined using Kinetic Theory of Granular flows(KTFG) which is based on the kinetic theory of gases 
+%
+in a generalized way to take into account collisions of inelastic particles to define a granular temperature $\theta$ in solid phase which directly affects the phase stress tensor (\cite{Gonzalez-2017}). 
+%
+Analogical to the thermodynamic temperature for gases, the granular temperature $\Theta=\frac{1}{3}<v_{s}^{\prime 2}>$ was introduced as a measure for the energy of the fluctuating velocity of the particles  Lun et al. 1987.
+%
 The equation of conservation of solids fluctuating energy can be expressed as \cite{Wang-2013}: 
 
 \begin{equation}
@@ -394,15 +400,16 @@ $$
 -\underbrace{\gamma_{\Theta_S}}_{\text {Dissipation due  to  inelastic collisions }}+\underbrace{\Phi_{LS}}_{\text {Dissipation/Production  due to the interaction with the carrier }}
 $$
 
-Rather than solving the complete granular energy balance given in Equation 1, \cite{Ekambara-2009} assume the granular energy is in a steady state and dissipated locally and neglect convection and diffusion. Retaining only the generation and the dissipation terms, Equation 1 simplifies to an algebraic expression for the granular temperature:
+Rather than solving the complete granular energy balance given in Equation 1, \cite{Ekambara-2009} assume the granular energy is in a steady state and dissipated locally and neglect convection and diffusion. 
+%
+Retaining only the generation and the dissipation terms, Equation 1 simplifies to an algebraic expression for the granular temperature:
+%
 \begin{equation}
 \left(-p_{\mathrm{s}} \overrightarrow{\mathrm{I}}+\vec{\tau}_{\mathrm{s}}\right): \vec{\nabla} \vec{u}_{\mathrm{s}}-\gamma_{\Theta \mathrm{s}}+\Phi_{LS}=0
 \end{equation}
-
-
+%
 Expression for all the terms can be derived (\cite{GID-1994}):
-
-
+%
 \begin{equation}
 \gamma_{\Theta_{\mathrm{S}}}=\frac{12\left(1-e^{2}\right) g_{0}}{d_{\mathrm{S}} \sqrt{\pi}} \rho_{\mathrm{S}} \alpha_{\mathrm{S}}^{2} \Theta_{\mathrm{S}}^{3 / 2}
 \end{equation}
@@ -413,8 +420,16 @@ Expression for all the terms can be derived (\cite{GID-1994}):
 p_{\mathrm{S}}=\alpha_{\mathrm{S}} \rho_{\mathrm{S}} \Theta_{\mathrm{S}}+2 \rho_{\mathrm{S}}\left(1+e\right) \alpha_{\mathrm{S}}^{2} g_{0} \Theta_{\mathrm{S}})
 \end{equation}
 
-where \(e_{\mathrm{}}\) is the coefficient of restitution for particle collisions that quantifies the elasticity of particle collisions. $(\mathrm{g_{0}})$ is the radial distribution function that can also be seen as a probability for interaction between particles. Different models exists, they are  formulated is in table 2.
-The solid bulk viscosity $\lambda_S$ accounts for the granular particles resistance of compression and expansion. It can be calculated by the following form (\citet{Ekambara-2009}):
+where \(e_{\mathrm{}}\) is the coefficient of restitution for particle collisions that quantifies the elasticity of particle collisions. 
+%
+$(\mathrm{g_{0}})$ is the radial distribution function that can also be seen as a probability for interaction between particles. 
+%
+Different models exists, they are  formulated is in table 2.
+%
+The solid bulk viscosity $\lambda_S$ accounts for the granular particles resistance of compression and expansion. 
+%
+It can be calculated by the following form (\citet{Ekambara-2009}):
+%
 \begin{equation}
 \lambda_{\mathrm{S}}=\frac{4}{3} \alpha_{\mathrm{S}} \rho_{\mathrm{S}} d_{\mathrm{S}} g_{0}\left(1+e\right)\left(\frac{\Theta_{\mathrm{S}}}{\pi}\right)^{\frac{1}{2}}
 \end{equation}
@@ -422,6 +437,7 @@ Then, the solid shear viscosity $\mu_S$ based on granular kinetic theory consist
 \begin{equation}
 \mu_{\mathrm{S}}=\mu_{\mathrm{S}, \mathrm{col}}+\mu_{\mathrm{S}, \mathrm{kin}} 
 \end{equation}
+%
 Table 2 show different Kinetic Theory Correlations for $\mu_S$ and $g_0$.
 
 \begin{table}[h!]
@@ -462,23 +478,46 @@ $\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Remarks:}\\
+%
 For granular viscosity: 
+%
 \begin{itemize}
-\item \citet{henrya}  follow \citet{Lun_1984}  but constrain the mean free path of the particle by a dimension characteristic of the actual physical system. This is opposed to the \citet{Lun_1984}  theory which allows the mean free path to tend toward infinity.
+%
+\item \citet{henrya}  follow \citet{Lun_1984}  but constrain the mean free path of the particle by a dimension characteristic of the actual physical system. 
+%
+This is opposed to the \citet{Lun_1984}  theory which allows the mean free path to tend toward infinity.
+%
 \item \citet{Lun_1984}  theory which allows the mean free path to tend toward infinity and the solids viscosities tends toward a finite value as the solids volume fraction tends to zero.
+%
 \item By constraining the mean free path, the limit of the \citet{henrya}  shear viscosity expression correctly tends to zero as the solids volume fraction approaches zero.
-\item \citet{symlal1993} solids shear viscosity also tends to zero as the solids volume fraction tends to zero. In this case, however, the solids shear viscosity limit is reached because the kinetic contribution to the solids viscosity is neglected.
+%
+\item \citet{symlal1993} solids shear viscosity also tends to zero as the solids volume fraction tends to zero. 
+%
+In this case, however, the solids shear viscosity limit is reached because the kinetic contribution to the solids viscosity is neglected.
+%
 \end{itemize}
+%
 For radial function:
+%
 \begin{itemize}
-\item  The \citet{Carnahan-1969} expression, however, does not tend toward the correct limit at closest solids packing. Because particles are in constant contact at the maximum solid volume fraction, the radial distribution function at contact tends to infinity. 
+%
+\item  The \citet{Carnahan-1969} expression, however, does not tend toward the correct limit at closest solids packing. 
+%
+Because particles are in constant contact at the maximum solid volume fraction, the radial distribution function at contact tends to infinity.
+% 
 \item Alternate expressions to the \citet{Carnahan-1969} expression have been proposed by \citet{GID-1994}, \citet{lun1986} and \citet{sinclair-1989} which tend to the correct limit at closest packing.
+%
 \end{itemize}
-
+%
 The KTGF models are choosed based on a sensitivity analysis where the \citet{symlal1993} model for the granular viscosity gave better results and were more stable, along with \citet{sinclair-1989} model for the radial function.
+%
 
-When the solid phase fraction is high in a particular zone of the domain, lots of contacts among particles occur and a frictional stress derives from them that must be accounted for in the mathematical model. In this state the collisions among particles could not be considered instantaneous as previously done in the kinetic theory and the frictional stress is accounted for adding a term in the granular pressure and in the granular viscosity. Hence, the solid shear viscosity $\mu_S$ is expressed by Eq.(\ref{mus1}):
-
+When the solid phase fraction is high in a particular zone of the domain, lots of contacts among particles occur and a frictional stress derives from them that must be accounted for in the mathematical model. 
+%
+In this state the collisions among particles could not be considered instantaneous as previously done in the kinetic theory and the frictional stress is accounted for adding a term in the granular pressure and in the granular viscosity. 
+%
+Hence, the solid shear viscosity $\mu_S$ is expressed by Eq.(\ref{mus1}):
+%
 \begin{equation}
 \begin{aligned}
 \boldsymbol{\mathcal{P_\mathfrak{{s}}}} &=\mathcal{P_{\text {kinetic }}+P_\mathfrak{{s, fr}}} \\
@@ -486,7 +525,9 @@ When the solid phase fraction is high in a particular zone of the domain, lots o
 \label{mus1}
 \end{aligned}
 \end{equation}
+%
 % \citet{Johnson-1987} propose a semi-empirical equation for the normal frictional stress, $\boldsymbol\mathcal{P_\mathfrak{{f}}}$:
+%
 \begin{equation}
 \boldsymbol{\mathcal{P_\mathfrak{{s, fr}}}}=\mathcal{F}\mathfrak{r} \frac{\left(\mathcal{\alpha}_\mathfrak{s}-\mathcal{\min \left(\alpha_\mathfrak{s}\right)}\right)^\mathfrak{n}}{\mathcal{\left(\alpha_\mathfrak{s, \max }-\alpha_\mathfrak{s}\right)^\mathfrak{p}}}
 \end{equation}
@@ -494,13 +535,25 @@ where  $\boldsymbol{\mathcal{F}\mathfrak{r}}=0.05$, $\boldsymbol{\mathfrak{n}}=2
 \begin{equation}
 \mathcal{\boldsymbol{\mu_\mathfrak{{s, fr}}}=P_\mathfrak{{s, fr}} \sin \delta}
 \end{equation}
+%
 being $\mathfrak{\delta}$ the angle of internal friction of the particle.
-
+%
 {\bf NB}: The frictional stress is added to the stress predicted by the kinetic theory when the solids volume fraction exceeds a critical value. This value is normally set to 0.5 when the flow is three-dimensional and the maximum packing limit is about 0.63.
+%
 %%%%%%%%%%%%%%%%%
 
 \section{Pressure drop calculations for single phase flow}\label{single}
-The single-phase flow simulations are carried out to validate the modeling approach, the choice of the turbulence model as well as various essential parameters in order to carry out the treatment of the area near the wall. Also to validate the surrogates models approach. The pressure drop data for different water flow rates is recorded for cases of : horizontal pipe, inclined pipe and pipe with elbow. The results of the CFD code are compared with predicted values from theoretical correlations found in the literature. Table \ref{tab:PD} shows different correlations to calculate the pressure drop for each setup.
+%
+The single-phase flow simulations are carried out to validate the modeling approach, the choice of the turbulence model as well as various essential parameters in order to carry out the treatment of the area near the wall. 
+%
+Also to validate the surrogates models construction  approach. 
+%
+The pressure drop data for different water flow rates is recorded for cases of : horizontal pipe, inclined pipe and pipe with elbow. 
+%
+The results of the CFD code are compared with predicted values from theoretical correlations found in the literature. 
+%
+Table \ref{tab:PD} shows different correlations to calculate the pressure drop for each setup.
+%
 \begin{table}[ht!]
 \begin{center}
 \caption{Pressure drop correlations}\label{tab:PD}
@@ -520,12 +573,14 @@ $ & Pipe with Bend   \\
 \end{tabular}
 \end{center}
 \end{table}
-
+%
 The implicit relation proposed by Colebrook, Eq.(\ref{col}), is used to calculate the friction factor for turbulent flows in rough pipes.
+%
 \begin{equation}
 \frac{1}{\sqrt{f}}=-2 \log \left(\frac{e}{3.71 D}+\frac{2.51}{\operatorname{Re} \sqrt{f}}\right)
 \label{col}
 \end{equation}
+%
 where $\frac{e}{D}$ is the relative roughness, and is related the pipe material properties.
 %%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -576,23 +631,25 @@ However, wall functions are used to treat the boundary-layer development up to t
 y_{p}=\frac{y^{+} \mu_W}{\rho_W\sqrt{f u_{W}}}
  \label{yp}
  \end{equation}
-
- For the inlet turbulence conditions, Eq.(\ref{kin}) present the turbulent kinetic energy (\(k_{in}\)) that is obtained from the turbulence intensity (\(I\)) and the water inlet velocity \((U_W)\) (\citet{Messa-2020}):
+%
+For the inlet turbulence conditions, Eq.(\ref{kin}) present the turbulent kinetic energy (\(k_{in}\)) that is obtained from the turbulence intensity (\(I\)) and the water inlet velocity \((U_W)\) (\citet{Messa-2020}):
 %
  \begin{equation}
  k_{in} =\frac{3}{2} U_W^{2} I^{2} 
  \label{kin}
  \end{equation}
-
- Next, the length scale (l) of the turbulence at the inlet should be specified. For an internal pipe flow, this is usually \(\sim 7 \%\) of the pipe diameter. So the turbulent dissipation rate ( \(\epsilon_{in}\) ) is calculated as shown in Eq.(\ref{epsilon in}): 
+%
+ Next, the length scale (l) of the turbulence at the inlet should be specified. 
+%
+For an internal pipe flow, this is usually \(\sim 7 \%\) of the pipe diameter. So the turbulent dissipation rate ( \(\epsilon_{in}\) ) is calculated as shown in Eq.(\ref{epsilon in}): 
+%
  \begin{equation}
  \epsilon_{in}=C_{\mu} \frac{k_{in}^{3 / 2}}{l} 
  \label{epsilon in}
  \end{equation}
-
-
 % %%%%%%%%%%%%%%%%%%%
  \chapter{Methodology}
+ %
  After choosing the mathematical models necessary to simulate the diphasic flow, comes the part of the implementation under the CFD tool. 
  %
  In this work the open-source CFD toolbox openfoam was choosed to perform the simulations, considering its advantages by comparing it with other CFD tools.
@@ -619,369 +676,517 @@ Then, in the constant file the different forces which act on the flow have been 
  %
  The implementation of the model also requires special attention to the boundary conditions which need a good understanding of the physical phenomenon to define them.
 % %%%%
-% \chapter{Results and discussions} \label{results}
-% \section{Single phase flow} \label{single flow}
-% To carry out validation of the mathematical model along with the turbulence model and the treatment process for the area near the wall, simulations for a single phase flow are performed for three pipe setups. Moreover, these simulations will help to validate the approach of constructing surrogates models. The predicted values of the theoretical correlations presented in section \ref{single}, are used to judge the CFD results. The implementation of the models is done under the OpenFOAM software V7. Table \ref{table 2} summarizes different boundary conditions for different inputs. 
+ \chapter{Results and discussions} \label{results}
+ %
+ \section{Single phase flow} \label{single flow}
+%
+ To carry out validation of the mathematical model along with the turbulence model and the treatment process for the area near the wall, simulations for a single phase flow are performed for three pipe setups. 
+ %
+ Moreover, these simulations will help to validate the approach of constructing surrogates models. 
+ %
+ The predicted values of the theoretical correlations presented in section \ref{single}, are used to judge the CFD results. 
+ %
+ The implementation of the models is done under the OpenFOAM software V7. Table \ref{table 2} summarizes different boundary conditions for different inputs. 
+%
+\begin{table}[ht!]
+ \begin{center}
+ \caption{Summary of the selected boundary conditions}
+ \begin{tabular}{cccc}
+ \hline Field & Inlet & Outlet & Solid walls  \\
+ \hline
+ \(\epsilon_{W}\) & fixedValue & zeroGradient & wall function\\
+ \(k_{W}\) & fixedValue & zeroGradient & wall function \\
+ \(v_{t}\) & zeroGradient & zeroGradient & wallFunction \\
+ \(p\) & zeroGradient & atmospheric pressure & zeroGradient  \\
+ \(U_W\) & fixedValue  & zeroGradient & noSlip \\
+ \hline
+ \label{table 2}
+ \end{tabular}
+ \end{center}
+ \end{table}
 
-% \begin{table}[ht!]
-% \begin{center}
-% \caption{Summary of the selected boundary conditions}
-% \begin{tabular}{cccc}
-% \hline Field & Inlet & Outlet & Solid walls  \\
-% \hline
-% \(\epsilon_{W}\) & fixedValue & zeroGradient & wall function\\
-% \(k_{W}\) & fixedValue & zeroGradient & wall function \\
-% \(v_{t}\) & zeroGradient & zeroGradient & wallFunction \\
-% \(p\) & zeroGradient & atmospheric pressure & zeroGradient  \\
-% \(U_W\) & fixedValue  & zeroGradient & noSlip \\
-% \hline
-% \label{table 2}
-% \end{tabular}
-% \end{center}
-% \end{table}
-
-% %%%%%%%%%%%%%%%%%%
-% \subsubsection{Horizontal pipe}
-% The geometry consists of a 40 $m$ horizontal pipe, with an internal diameter of 0.9 $m$. Figure \ref{horiz}(a) and \ref{horiz}(b), shows a 2D section and the 3D meshed geometry. GMSH software was used to generate a specific mesh which takes into account the near-wall refinement by calculating the height of the first cell on the wall, with a precise magnification ratio which is linked to $y^{+}$ while approaching the center of the pipe. The flow consists of water with a density $\rho=1000 kg/m^3$. The Wall roughness is set at 0.045 $mm$. The inlet velocity is in ranges of 1 to 3 $m/s$. The pressure at the outlet is fixed as atmospheric pressure. The latter initial condition is the same for the next simulations of inclined and bended pipe in subsections 3.1.2 and 3.1.3 respectively.
-
-% % % \begin{minipage}[t]{0.35\textwidth}
-% \begin{figure}[ht!]
-% \begin{center}
-% (a)\includegraphics[scale =0.09]{figs/section.png}
-% \end{center}
-% \end{figure}
+% %%%%%%%%%%%%%%%%%%%
+ \subsubsection{Horizontal pipe}
+ %
+The geometry consists of a 40 $m$ horizontal pipe, with an internal diameter of 0.9 $m$. 
+%
+Figure \ref{horiz}(a) and \ref{horiz}(b), shows a 2D section and the 3D meshed geometry. 
+%
+GMSH software was used to generate a specific mesh which takes into account the near-wall refinement by calculating the height of the first cell on the wall, with a precise magnification ratio which is linked to $y^{+}$ while approaching the center of the pipe. 
+%
+The flow consists of water with a density $\rho=1000 kg/m^3$. 
+%
+The Wall roughness is set at 0.045 $mm$. The inlet velocity is in ranges of 1 to 3 $m/s$. 
+%
+The pressure at the outlet is fixed as atmospheric pressure. The latter initial condition is the same for the next simulations of inclined and bended pipe in subsections \ref{inclined} and \ref{bended} respectively.
+%
+ \begin{minipage}[t]{0.35\textwidth}
+ \begin{figure}[ht!]
+ \begin{center}
+ (a)\includegraphics[scale =0.09]{figs/section.png}
+ \end{center}
+ \end{figure}
 % %  
-% % % \begin{minipage}[t]{0.5\textwidth}
-% \begin{figure}[ht!]
-% (b)\includegraphics[scale = 0.25]{figs/HP-2.png}
-
-% \end{figure}
+ \begin{minipage}[t]{0.5\textwidth}
+ \begin{figure}[ht!]
+ (b)\includegraphics[scale = 0.25]{figs/HP-2.png}
+ \end{figure}
 % %  
-% \begin{figure}[ht!]
-% {\Large\bf GPU}
-% \caption{Horizontal pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
-% \label{horiz}
-% \end{figure}
-% For a horizontal pipe, we have regular pressure drops, which are generated by the friction of the fluid on the internal wall of the pipe throughout its passage. They depend on, the length of the pipe, the relative roughness of the pipe, the speed of the fluid circulating in the pipe ($U_{in}$ $m/s$), as presented in table 1. Therefore, As can be seen in Figure \ref{horiz:theo}, the pressure losses are increasing relatively with inlet velocities. For this current case of a horizontal pipe, experimental data were found for water flow in (\citet{Randal-2004}), and also a good agreement was found with cfd results as shown in Figure \ref{horiz:theo}.\\
+\begin{figure}[ht!]
+ {\Large\bf GPU}
+ \caption{Horizontal pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
+ \label{horiz}
+ \end{figure}
+ %
+ For a horizontal pipe, we have regular pressure drops, which are generated by the friction of the fluid on the internal wall of the pipe throughout its passage. 
+ %
+ They depend on, the length of the pipe, the relative roughness of the pipe, the speed of the fluid circulating in the pipe ($U_{in}$ $m/s$), as presented in table 1. 
+ %
+ Therefore, As can be seen in Figure \ref{horiz:theo}, the pressure losses are increasing relatively with inlet velocities. 
+ %
+ For this current case of a horizontal pipe, experimental data were found for water flow in (\citet{Randal-2004}), and also a good agreement was found with cfd results as shown in Figure \ref{horiz:theo}.\\
+ %
+The mean average percentage error is defined as follows:
+%
+ \footnotesize{$$
+ \text{MAPE}=\left\{\frac{1}{n} \sum_{k=1}^{n}\left[\frac{(d p / d x)_{\text{pred}}-(d p / d x)_{\text{theory} }}{(d p / d x)_{\text{theory}}}\right]\right\} 100
+ $$\\
+ \text{MAPE} = 1.21 $\%$}
+ \begin{figure}[ht!]
+ \begin{center}
+ \includegraphics[scale = 0.45]{figs/WH}
+ \caption{ Pressure drop in horizontal pipe. 
+ %
+ Present pressure drops from CFD simulations versus empirical formula in table \ref{tab:PD} and experimental measurements.}\label{horiz:theo}
+ %
+ \end{center}
+ \end{figure}
 
 
-% The mean average percentage error is defined as follows:
-% \footnotesize{$$
-% \text{MAPE}=\left\{\frac{1}{n} \sum_{k=1}^{n}\left[\frac{(d p / d x)_{\text{pred}}-(d p / d x)_{\text{theory} }}{(d p / d x)_{\text{theory}}}\right]\right\} 100
-% $$\\
-% \text{MAPE} = 1.21 $\%$}
-% \begin{figure}[ht!]
-% \begin{center}
-% \includegraphics[scale = 0.45]{figs/WH}
-% \caption{ Pressure drop in horizontal pipe. 
-% Present pressure drops from CFD simulations versus empirical formula in table \ref{tab:PD} and experimental measurements.}\label{horiz:theo}
-% \end{center}
-% \end{figure}
 
+ \subsubsection{Inclined pipe}\label{inclined}
+ %
+ In this section, the geometry consists of a 40 $m$ inclined pipe with 0.9 $m$ diameter and a 5.73 degree negative slope. Figure \ref{incline}(a) and \ref{incline}(b) show the
+ cross-section and profile mesh.\\
+ %
+ \begin{minipage}[t]{0.35\textwidth}
+ \begin{figure}[ht!]
+ \begin{center}
+ (a)\includegraphics[scale =0.09]{figs/section.png}
+ \label{fig:gauss}
+ \end{center}
+ \end{figure}
 
+ \begin{figure}[ht!]
+ (b)\includegraphics[width=6cm,height=2.5cm]{figs/IP}
+ \label{fig:gauss}
+ \end{figure}
 
-% \subsubsection{Inclined pipe}\label{inclined}
-% In this section, the geometry consists of a 40 $m$ inclined pipe with 0.9 $m$ diameter and a 5.73 degree negative slope. Figure \ref{incline}(a) and \ref{incline}(b) show the
-% cross-section and profile mesh.\\
-% % % \begin{minipage}[t]{0.35\textwidth}
-% \begin{figure}[ht!]
-% \begin{center}
-% (a)\includegraphics[scale =0.09]{figs/section.png}
-% \label{fig:gauss}
-% \end{center}
-% \end{figure}
+ \begin{figure}[ht!]
+ \centering
+ \caption{Inclined pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
+ \label{incline}
+ \end{figure}
 
-% \begin{figure}[ht!]
-% (b)\includegraphics[width=6cm,height=2.5cm]{figs/IP}
-% \label{fig:gauss}
-% \end{figure}
-
-% \begin{figure}[ht!]
-% \centering
-% \caption{Inclined pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
-% \label{incline}
-% \end{figure}
-
-% Concerning this pipe setup, it is characterized by a changing elevation. Consequently, at the end of the inclined pipe there is the full weight of fluid pushing down on that point and due to this, the pressure at that point increases. Therefore, there is a pressure gain in the pipe as the fluid goes down. The total pressure difference can be calculated by  adding the hydrostatic pressure to the friction component as in table \ref{tab:PD}.
-% Figure \ref{inclin}, show the pressure gradient as a function of inlet velocities.
-% As noticed the pressure gain decreases while increasing the velocity, and this comes back to the augmentation of  friction losses.\\
-% % \begin{minipage}[t]{0.45\textwidth}
-% \vspace{3.5cm}
-% \small{The mean average percentage error (MAPE) = 0.97 $\%$}
-
-
-% \begin{figure}[ht!]
-% \begin{center}
-% \includegraphics[scale = 0.45]{figs/inclined.png}
-% \caption{ Pressure drop in inclined pipe}
-% \label{inclin}
-% \end{center}
-% \end{figure}
-% % \end{minipage}
+ Concerning this pipe setup, it is characterized by a changing elevation. 
+ %
+ Consequently, at the end of the inclined pipe there is the full weight of fluid pushing down on that point and due to this, 
+ %
+ the pressure at that point increases. 
+ %
+ Therefore, there is a pressure gain in the pipe as the fluid goes down. 
+ %
+ The total pressure difference can be calculated by adding the hydrostatic pressure to the friction component as in table \ref{tab:PD}.
+ %
+ Figure \ref{inclin}, show the pressure gradient as a function of inlet velocities.
+ %
+ As noticed the pressure gain decreases while increasing the velocity, and this comes back to the augmentation of  friction losses.\\
+ %
+\begin{minipage}[t]{0.45\textwidth}
+ \vspace{3.5cm}
+ \small{The mean average percentage error (MAPE) = 0.97 $\%$}
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ \includegraphics[scale = 0.45]{figs/inclined.png}
+ \caption{ Pressure drop in inclined pipe}
+ \label{inclin}
+ \end{center}
+ \end{figure}
+ \end{minipage}
 % %%%%%%%%%%%%%%%%%%%%%
-% \subsubsection{Bended pipe}\label{bended}
-% For this setup, the geometry consists of a $45$ degree bended pipe, of 6 $m$ equivalent length with 0.9 $m$ diameter. Figure \ref{bend}(a) and \ref{bend}(b) show the cross-section and profile mesh.\\
-% % % \begin{minipage}[t]{0.35\textwidth}
-% \begin{figure}[ht!]
-% \begin{center}
-% (a)\includegraphics[scale =0.09]{figs/section.png}
-% \label{fig:gauss}
-% \end{center}
-% \end{figure}
+%
+ \subsubsection{Bended pipe}\label{bended}
+ For this setup, the geometry consists of a $45$ degree bended pipe, of 6 $m$ equivalent length with 0.9 $m$ diameter. Figure \ref{bend}(a) and \ref{bend}(b) show the cross-section and profile mesh.\\
+ \begin{minipage}[t]{0.35\textwidth}
+ \begin{figure}[ht!]
+ \begin{center}
+ (a)\includegraphics[scale =0.09]{figs/section.png}
+ \label{fig:gauss}
+ \end{center}
+ \end{figure}
+%
+ \begin{figure}[ht!]
+ (b)\includegraphics[scale = 0.17]{figs/bend.png}
+ \label{fig:gauss}
+ \end{figure}
+%
+ \begin{figure}[ht!]
+ \centering
+ \caption{Bended pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
+ \label{bend}
+ \end{figure}
+%
+ This pipe setup is more complex, since in addition to the previously discussed components of the  kinetic losses, another component is added namely the singular pressure drop as in table \ref{tab:PD}. 
+ %
+ The singular pressure drops are mainly due to the geometric modification of the pipe, such as changes of direction like bends. 
+ %
+ Figure \ref{bend:theo} shows that the pressure loss is increased in such geometries.
+ %
+ \begin{minipage}[t]{0.45\textwidth}
+ \vspace{3.5cm}
+ \small{The mean average percentage error (MAPE) = 7.99 $\%$}
+%
+\begin{figure}[ht!]
+ \begin{center}
+ \includegraphics[scale = 0.45]{figs/bend1}
+ \caption{ Pressure drop in bended pipe. The empirical formula slightly underestimates the pressure drop versus the CFD simulations }
+ \label{bend:theo}
+ \end{center}
+ \end{figure}
+ \end{minipage}
+ %
+The pressure drop formulae constitute surrogate models for pressures calculations in piping systems with newtonian fluids such as water. 
+%
+From the previous analysis we see that CFD reproduces very well the pressure drop measurement and the empirical models fits the CFD results for the classical geometrical configurations. 
+%
+Hence, one can consider for example computing other pressure drop models for Newtonien fluids but for much more complex geometries, where experiments may be complex or time consuming to conduct. 
+%
+In the next section we will consider a different case, where the complexity is introduced in the fluid itself. And the aim is to use the CFD approach to develop pressure drop models for complex fluids.
+%
+Morevoer, once the simulations validated they can be used to develop response models (or surrogate models) for other physical quantities than pressure drops. 
+%
+For instance, in a slurry pipe flow a sedimentation model along pipe of different geometries can be usefull for applications.  
 
+\section{Two phase flow} \label{Two Phase}
 
-% \begin{figure}[ht!]
-% (b)\includegraphics[scale = 0.17]{figs/bend.png}
-% \label{fig:gauss}
-% \end{figure}
+An attempt to simulate the behaviour of a sediment-water mixture during its transportation through a pipe has been made, using the twoPhaseEulerFoam solver available in the 6.0 release of the open-source CFD toolbox OpenFOAM. 
+%
+The geometry used consisted of a pipe of length L = 0.02 m, a diameter D = 0.0001 m. 
+%
+The flow is laminar with Re = 144,  , $\rho_S= 1,450  kg/m^3$, $\rho_W= 1,027  kg/m^3$, $V_{mixture} = 1 m/s$, $d_S= 70 \mu m$, $\mu_W = 0.00891  kg/m.s$, $\alpha_{0S} = 30 \%$, $P_0=10^5  Pa$. 
+%
+Figure 6 and 7, show the 2D and 3D meshed geometry. OpenFOAM's meshing utility blockMesh was used to generate structured orthogonal meshes about 200 cells along the pipe.
+%
+\begin{itemize}
+ \bf{\item Pre-processing: 2D and 3D meshed geometry}
+  \end{itemize}
+ \vspace{0.5cm}
+\vspace{-0.6cm}
+\begin{figure}[ht!]
+ \begin{center}
+ \include{diag}
+ \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.6]{figs/1.png}
+ \caption{ Cross-section mesh}
+ \label{fig:gauss}
+ \end{center}
+ \end{figure} 
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ \include{diag}
+ \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.6]{figs/2.png}
+ \caption{ 3D pipe mesh}
+ \label{fig:gauss}
+ \end{center}
+ \end{figure} 
+%
+ \begin{itemize}
+ \bf{\item Post-processing}
+ \end{itemize}
+ %
+ Figure 8 and 9 show the solid concentration for the cross-section of the pipe and along the pipe respectively. 
+ %
+ These first results show an agreement with one of the types of two-phase flows found in the literature, which is a sliding bed flow. 
+ %
+ While, figure 10 shows that the condition of the fractional volumes sum for the two phases is equal to 1, throughout the diameter in the  pipe outlet.\\
+ %
+\begin{figure}[ht!]
+ \begin{center}
+ \include{diag}
+ \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.7]{figs/7.png}
+ \caption{ \footnotesize{Cross-section Concentration at the outlet} }
+ \label{fig:gauss}
+ \end{center}
+ \end{figure} 
+%
+ \begin{figure}[ht!]
+ \begin{center}
+\include{diag}
+ \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.72]{figs/6.png}
+ {\caption{ \footnotesize Concentration along the pipe}}
+ \label{fig:gauss}
+ \end{center}
+ \end{figure} 
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ \include{diag}
+ \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.25]{figs/5.png}
+ \caption{ \footnotesize { Volume fraction of both phases }}
+ \label{fig:gauss}
+ \end{center}
+ \end{figure} 
 
-% \begin{figure}[ht!]
-% \centering
-% \caption{Bended pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
-% \label{bend}
-% \end{figure}
-
-% This pipe setup is more complex, since in addition to the previously discussed components of the  kinetic losses, another component is added namely the singular pressure drop as in table \ref{tab:PD}. The singular pressure drops are mainly due to the geometric modification of the pipe, such as changes of direction like bends. Figure \ref{bend:theo} shows that the pressure loss is increased in such geometries.
-% % \begin{minipage}[t]{0.45\textwidth}
-% \vspace{3.5cm}
-% \small{The mean average percentage error (MAPE) = 7.99 $\%$}
-
-
-% \begin{figure}[ht!]
-% \begin{center}
-% \includegraphics[scale = 0.45]{figs/bend1}
-% \caption{ Pressure drop in bended pipe. The empirical formula slightly underestimates the pressure drop versus the CFD simulations }
-% \label{bend:theo}
-% \end{center}
-% \end{figure}
-% % \end{minipage}
-
-% The pressure drop formulae constitute surrogate models for pressures calculations in piping systems with newtonian fluids such as water. From the previous analysis we see that CFD reproduces very well the pressure drop measurement and the empirical models fits the CFD results for the classical geometrical configurations. Hence, one can consider for example computing other pressure drop models for Newtonien fluids but for much more complex geometries, where experiments may be complex or time consuming to conduct. In the next section we will consider a different case, where the complexity is introduced in the fluid itself. And the aim is to use the CFD approach to develop pressure drop models for complex fluids.
-
-% %Morevoer the simulations, once validated can be used to develop response models (or surrogate models) for other physical quantities than pressure drops. For instance, in a slurry pipe flow a sedimentation model along pipe of different geometries can be usefull for applications.  
-
-% \section{Two phase flow} \label{Two Phase}
-
-% An attempt to simulate the behaviour of a sediment-water mixture during its transportation through a pipe has been made, using the twoPhaseEulerFoam solver available in the 6.0 release of the open-source CFD toolbox OpenFOAM. The geometry used consisted of a pipe of length L = 0.02 m, a diameter D = 0.0001 m. The flow is laminar with Re = 144,  , $\rho_S= 1,450  kg/m^3$, $\rho_W= 1,027  kg/m^3$, $V_{mixture} = 1 m/s$, $d_S= 70 \mu m$, $\mu_W = 0.00891  kg/m.s$, $\alpha_{0S} = 30 \%$, $P_0=10^5  Pa$. Figure 6 and 7, show the 2D and 3D meshed geometry. OpenFOAM's meshing utility blockMesh was used to generate structured orthogonal meshes about 200 cells along the pipe.
-
-% \begin{itemize}
-% \bf{\item Pre-processing: 2D and 3D meshed geometry}
-% \end{itemize}
-% \vspace{0.5cm}
-% %\vspace{-0.6cm}
-% \begin{figure}[ht!]
-% \begin{center}
-% %\include{diag}
-% \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.6]{figs/1.png}
-% \caption{ Cross-section mesh}
-% \label{fig:gauss}
-% \end{center}
-% \end{figure} 
-
-% \begin{figure}[ht!]
-% \begin{center}
-% %\include{diag}
-% \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.6]{figs/2.png}
-% \caption{ 3D pipe mesh}
-% \label{fig:gauss}
-% \end{center}
-% \end{figure} 
-
-% \begin{itemize}
-% \bf{\item Post-processing}
-% \end{itemize}
-% Figure 8 and 9 show the solid concentration for the cross-section of the pipe and along the pipe respectively. These first results show an agreement with one of the types of two-phase flows found in the literature, which is a sliding bed flow. While, figure 10 shows that the condition of the fractional volumes sum for the two phases is equal to 1, throughout the diameter in the  pipe outlet.\\
-
-% \begin{figure}[ht!]
-% \begin{center}
-% %\include{diag}
-% \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.7]{figs/7.png}
-% \caption{ \footnotesize{Cross-section Concentration at the outlet} }
-% \label{fig:gauss}
-% \end{center}
-% \end{figure} 
-
-% \begin{figure}[ht!]
-% \begin{center}
-% %\include{diag}
-% \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.72]{figs/6.png}
-% {\caption{ \footnotesize Concentration along the pipe}}
-% \label{fig:gauss}
-% \end{center}
-% \end{figure} 
-
-% \begin{figure}[ht!]
-% \begin{center}
-% %\include{diag}
-% \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.25]{figs/5.png}
-% \caption{ \footnotesize { Volume fraction of both phases }}
-% \label{fig:gauss}
-% \end{center}
-% \end{figure} 
-
-% \begin{center}
-% \end{center}
-% Two phase simulations were presented by authors in (\citet{elkarii2020towards}), where a slurry of mono-dispersed spherical polystyrene beads with rhodorsil silicone oil were simulated in a laminar flow. Figure \ref{fig:laminar} shows the evolution of the solid concentration profile of the mixture over time.\\
-
-% \begin{figure}[ht!]
-% \begin{center}
-% (a)\includegraphics[scale = 0.45]{figs/E4}
-% \end{center}
-% \end{figure}
-
-% \begin{figure}[ht!]
-% \begin{center}
-% (b)\includegraphics[scale = 0.45]{figs/E3}
-% \end{center}
-% \end{figure}
-
-% \begin{figure}[ht!]
-% \begin{center}
-% (c)\includegraphics[scale = 0.45]{figs/E2}
-% \end{center}
-% \end{figure}
-
-% \begin{figure}[ht!]
-% \begin{center}
-% (d)\includegraphics[scale = 0.45]{figs/E1}
-% \end{center}
-% \end{figure}
-
-% \begin{figure}[ht!]
-% \centering
-% \caption{Sediment concentration profiles over time (a) At t = 232 s, (b) t = 652 s (c) t = 1072 s (d) t = 1492 s}
-% \label{fig:laminar}
-% \end{figure}
-
-% The previous study (\citet{elkarii2020towards}), validates the model for its capability to reproduce and predict high volume concentration profiles up to 60 $\%$. The validation case consists of a sedimentation of non-cohesive particles by \citet{chauchat}, based on experimental data from (\citet{Pha-2008}). The sedimentary phase was also modeled as continuous and consecutive laws were adopted to take sedimentary constraints into account.
-
-% However, to approach the simulation of a real slurry flow, the turbulence aspect must be added to prevent sedimentation problems. Therefore, in this part, CFD simulations were performed to fit the experimental results of a turbulent flow of water-sand slurry under isothermal conditions, reported by \citet{Randal-2004}. Experimental data consists of pressure drops along the pipe, particle concentration profiles and particles velocity profiles at the pipe outlet. The simulation domain consists of a 10 m long pipe. boundary conditions set are the inlet, the outlet and the lateral surface which is referenced as walls, are presented in the table \ref{tab:bc}. The mass flow rates of the two phases, \(\dot{m}_{W}\) and \(\dot{m}_{\mathrm{S}}\) are fixed at the inlet boundary, and calculated as in Eq.(\ref{mass rate}), the turbulent kinetic energy of the liquid, \(k_{in}\), and its dissipation rate, \(\epsilon_{in }\), were also fixed as in Eq.(\ref{kin}) and Eq.(\ref{epsilon in}). 
-% \begin{equation}
-% \dot{m}_{W}= \alpha_{\mathrm{W}} \rho_{W} U_{\mathrm{W}} A;\quad \dot{m}_{\mathrm{S}}= \alpha_{\mathrm{S}} \rho_{\mathrm{S}} U_{\mathrm{S}} A
-% \label{mass rate}
-% \end{equation}
-
-% \begin{table}[ht!]
-% \begin{center}
-% \caption{Summary of the selected boundary conditions}
-% \label{tab:bc}
-% \begin{tabular}{cccc}
-% \hline Field & Inlet & Outlet & Solid walls  \\
-% \hline\(\alpha_{s}\) & fixedValue & zeroGradient & zeroGradient \\
-% \(\alpha_{W}\) & fixedValue & zeroGradient & zeroGradient \\
-% \(\epsilon_{W}\) & fixedValue & zeroGradient & wall function\\
-% \(k_{W}\) & fixedValue & zeroGradient & wall function \\
-% \(v_{t}\) & zeroGradient & zeroGradient &  wall function \\
-% \(p\) & fixedFluxPressure & atmospheric pressure & zeroGradient \\
-% \(\theta_{p}\) & fixedValue & zeroGradient & JohnsonJacksonParticleTheta\\
-% \(U_{W}\) & mass flow rate  & zeroGradient & noSlip\\
-% \(U_{S}\) & mass flow rate  & zeroGradient & JohnsonJacksonParticleSlip  \\
-% \hline
-% \end{tabular}
-% \end{center}
-% \end{table}
-
-% The numerical simulations performed in this section, uses the same mesh configuration, as in section \ref{single flow}, except that the meshes have been refined in all directions. The flow is characterized by high inlet velocities ranging up to 8 $m/s$. Two diameters of particles are considered, along with different solid concentrations. The physical parameters used are sand density $\rho_s=2650$ $kg/m^3$, water density $\rho_W=1000$ $kg/m^3$, and water viscosity $\mu_w= 10^{-3} kg/m.s$. The radial distributions of sand particles for two inlet concentrations are presented in figure \ref{solid}. Regarding the experimental results, the solid concentration profile varies slightly along the diameter of the pipe ($ 0.19 <\alpha_s <$ 0.24). The present simulation in figure \ref{solid}(a) agrees fairly well with the experiments in the bulk flow $(0.2<r/D <0.9)$, whereas the model underestimate the experimental values of $ \alpha_s $ near the upper wall ($ r / D> 0.9 $), and on the other hand, overestimate them along the lower wall ($ r / D <0.2 $ ). In the present model, it can be attributed to the none total control of the turbulent viscosity term, which promotes the phenomenon of sedimentation, resulting in a non-homogeneous concentration profile. On figure \ref{solid}(b) the solid concentration is increased up to $33$ $\%$, but, the same behavior is always observed, and corresponds to a pseudo-homogeneous flow with formation of a small bed of particles.  \\
-
-% \begin{figure}[ht!]
-% \begin{center}
-% (a)\includegraphics[scale = 0.3]{figs/3C}
-% \end{center}
-% \end{figure}
-
-% \begin{figure}[ht!]
-% \begin{center}
-% (b)\includegraphics[scale = 0.3]{figs/C33}
-% \end{center}
-% \end{figure}
-
-% \begin{figure}[ht!]
-% \centering
-% \caption{Radial distributions of the volume fraction of sand particles of $d_p= 0.09 mm$ for $U_{in} = 3 m/s$: (a) ($\alpha_{s,in}$ = 0.19), (b) ($\alpha_{s,in}$ = 0.33) }
-% \label{solid}
-% \end{figure}
-% The particles velocity  profiles for $U_{in} = 2 m/s$ and $U_{in} = 3 m/s$ are presented in figure \ref{U}(a) and \ref{U}(b) respectively. On the contrary to the concentration distribution, the present model predicts the right profile of velocity. It is remarked that the axial average velocities  distributions are symmetrical, and they agree almost exactly to a classic turbulent parabolic profile. This comes down to the fact that the presence of particles does not greatly influence the current field. This is explained by the constant solid concentration around the value 0.2 for the entire pipe and the dynamic viscosity of the fluid then varies slightly.\\
-
-% \begin{figure}[ht!]
-% \begin{center}
-% (a)\includegraphics[scale = 0.3]{figs/V22}
-% \end{center}
-% \end{figure}
-
-% \begin{figure}[ht!]
-% \begin{center}
-% (b)\includegraphics[scale = 0.3]{figs/3CFD}
-% \end{center}
-% \end{figure}
-
-% \begin{figure}[ht!]
-% \centering
-% \caption{Radial distributions of the mean axial velocity of sand particles at the outlet of the pipe, for $\alpha_{s}in$ = 0.19 and $d_p= 0.09 mm$ : (a) ( $Uin = 2 m/s$), (b) ( $Uin = 3 m/s$).}\label{U}
-% \end{figure}
-
-% Figure \ref{P} (a) and (b) shows the variations of the pressure drop per unit length $ \Delta P/L $ with the inlet velocity of the mixture $ U_{in}$. The present simulations obtained for two different particles diameters $d = 0.09 mm$ and $d=0.27 mm$, for nearly the same inlet concentration, and for a high velocities. Experimental data from (\citet {Randal-2004}) is used as a validation for current simulations. The pressure drop analyzed in current simulations augments almost linearly with $ U_{in} $. As anticipated, the pressure drop increases  because of the increased values of friction losses. Results fit well in figure \ref{P} (a) for $d=0.09 mm$, However, discrepancies are higher at high velocities. Contrary to figure \ref{P} (b) for $d= 0.27 mm$, a very good agreement is observed at high velocities, and a large gap is visible at low input velocities $U_{in} \leq 3 m/s$.\\
-
-% \begin{figure}[ht!]
-% \begin{center}
-% (a)\includegraphics[scale = 0.3]{figs/DP009}
-% \end{center}
-% \end{figure}
-
-
-% \begin{figure}[ht!]
-% \begin{center}
-% (b)\includegraphics[scale = 0.3]{figs/DP27}
-% \end{center}
-% \end{figure}
-
-
-% \begin{figure}[ht!]
-% \centering
-% \caption{Pressure drop per unit of length $\Delta P/L$  versus slurry velocity: (a) ($\alpha_S=0.19$, $d=0.09 mm$), (b) ($\alpha_S=0.20$, $d=0.27 mm$).}
-% \label{P}
-% \end{figure}
-
-% It is also noted, that coarser particles compared to smaller ones, have superior pressure drop at lower flow rates and have an inferior one at higher flow rates.  The reason behind this, is that the coarser particles at lower speeds deposit more which comes down to the gravitational effect, and subsequently, the amount of particles in the bed increases which leads to more frictions. While, in the case of smaller particles at higher velocities, the  pressure losses are bigger due to the larger surface area of the material.
+ \begin{center}
+ \end{center}
+ Two phase simulations were presented by authors in (\citet{elkarii2020towards}), where a slurry of mono-dispersed spherical polystyrene beads with rhodorsil silicone oil were simulated in a laminar flow. 
+ %
+ Figure \ref{fig:laminar} shows the evolution of the solid concentration profile of the mixture over time.\\
+ %
+\begin{figure}[ht!]
+ \begin{center}
+ (a)\includegraphics[scale = 0.45]{figs/E4}
+ \end{center}
+ \end{figure}
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ (b)\includegraphics[scale = 0.45]{figs/E3}
+ \end{center}
+ \end{figure}
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ (c)\includegraphics[scale = 0.45]{figs/E2}
+ \end{center}
+ \end{figure}
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ (d)\includegraphics[scale = 0.45]{figs/E1}
+ \end{center}
+ \end{figure}
+%
+ \begin{figure}[ht!]
+ \centering
+ \caption{Sediment concentration profiles over time (a) At t = 232 s, (b) t = 652 s (c) t = 1072 s (d) t = 1492 s}
+ \label{fig:laminar}
+ \end{figure}
+%
+The previous study (\citet{elkarii2020towards}), validates the model for its capability to reproduce and predict high volume concentration profiles up to 60 $\%$. 
+%
+The validation case consists of a sedimentation of non-cohesive particles by \citet{chauchat}, based on experimental data from (\citet{Pha-2008}). 
+%
+The sedimentary phase was also modeled as continuous and consecutive laws were adopted to take sedimentary constraints into account.
+%
+ However, to approach the simulation of a real slurry flow, the turbulence aspect must be added to prevent sedimentation problems. 
+ %
+ Therefore, in this part, CFD simulations were performed to fit the experimental results of a turbulent flow of water-sand slurry under isothermal conditions, reported by \citet{Randal-2004}. 
+ %
+ Experimental data consists of pressure drops along the pipe, particle concentration profiles and particles velocity profiles at the pipe outlet. 
+ %
+ The simulation domain consists of a 10 m long pipe. boundary conditions set are the inlet, the outlet and the lateral surface which is referenced as walls, are presented in the table \ref{tab:bc}. 
+ %
+ The mass flow rates of the two phases, \(\dot{m}_{W}\) and \(\dot{m}_{\mathrm{S}}\) are fixed at the inlet boundary, and calculated as in Eq.(\ref{mass rate}), the turbulent kinetic energy of the liquid, \(k_{in}\), 
+ %
+ and its dissipation rate, \(\epsilon_{in }\), were also fixed as in Eq.(\ref{kin}) and Eq.(\ref{epsilon in}). 
+ %
+\begin{equation}
+ \dot{m}_{W}= \alpha_{\mathrm{W}} \rho_{W} U_{\mathrm{W}} A;\quad \dot{m}_{\mathrm{S}}= \alpha_{\mathrm{S}} \rho_{\mathrm{S}} U_{\mathrm{S}} A
+ \label{mass rate}
+ \end{equation}
+%
+ \begin{table}[ht!]
+ \begin{center}
+ \caption{Summary of the selected boundary conditions}
+ \label{tab:bc}
+ \begin{tabular}{cccc}
+ \hline Field & Inlet & Outlet & Solid walls  \\
+ \hline\(\alpha_{s}\) & fixedValue & zeroGradient & zeroGradient \\
+ \(\alpha_{W}\) & fixedValue & zeroGradient & zeroGradient \\
+ \(\epsilon_{W}\) & fixedValue & zeroGradient & wall function\\
+ \(k_{W}\) & fixedValue & zeroGradient & wall function \\
+ \(v_{t}\) & zeroGradient & zeroGradient &  wall function \\
+ \(p\) & fixedFluxPressure & atmospheric pressure & zeroGradient \\
+ \(\theta_{p}\) & fixedValue & zeroGradient & JohnsonJacksonParticleTheta\\
+ \(U_{W}\) & mass flow rate  & zeroGradient & noSlip\\
+ \(U_{S}\) & mass flow rate  & zeroGradient & JohnsonJacksonParticleSlip  \\
+ \hline
+ \end{tabular}
+ \end{center}
+ \end{table}
+%
+The numerical simulations performed in this section, uses the same mesh configuration, as in section \ref{single flow}, except that the meshes have been refined in all directions. 
+%
+The flow is characterized by high inlet velocities ranging up to 8 $m/s$. 
+%
+Two diameters of particles are considered, along with different solid concentrations. 
+%
+The physical parameters used are sand density $\rho_s=2650$ $kg/m^3$, water density $\rho_W=1000$ $kg/m^3$, and water viscosity $\mu_w= 10^{-3} kg/m.s$. 
+%
+The radial distributions of sand particles for two inlet concentrations are presented in figure \ref{solid}. 
+%
+Regarding the experimental results, the solid concentration profile varies slightly along the diameter of the pipe ($ 0.19 <\alpha_s <$ 0.24). 
+%
+The present simulation in figure \ref{solid}(a) agrees fairly well with the experiments in the bulk flow $(0.2<r/D <0.9)$, whereas the model underestimate the experimental values of $ \alpha_s $ near the upper wall ($ r / D> 0.9 $), and on the other hand, 
+%
+overestimate them along the lower wall ($ r / D <0.2 $ ). In the present model, it can be attributed to the none total control of the turbulent viscosity term, which promotes the phenomenon of sedimentation, resulting in a non-homogeneous concentration profile. 
+%
+On figure \ref{solid}(b) the solid concentration is increased up to $33$ $\%$, but, the same behavior is always observed, and corresponds to a pseudo-homogeneous flow with formation of a small bed of particles.  \\
+%
+\begin{figure}[ht!]
+ \begin{center}
+ (a)\includegraphics[scale = 0.3]{figs/3C}
+ \end{center}
+ \end{figure}
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ (b)\includegraphics[scale = 0.3]{figs/C33}
+ \end{center}
+ \end{figure}
+%
+ \begin{figure}[ht!]
+ \centering
+ \caption{Radial distributions of the volume fraction of sand particles of $d_p= 0.09 mm$ for $U_{in} = 3 m/s$: (a) ($\alpha_{s,in}$ = 0.19), (b) ($\alpha_{s,in}$ = 0.33) }
+ \label{solid}
+ \end{figure}
+ %
+ The particles velocity  profiles for $U_{in} = 2 m/s$ and $U_{in} = 3 m/s$ are presented in figure \ref{U}(a) and \ref{U}(b) respectively. 
+ %
+ On the contrary to the concentration distribution, the present model predicts the right profile of velocity. 
+ %
+ It is remarked that the axial average velocities  distributions are symmetrical, and they agree almost exactly to a classic turbulent parabolic profile. 
+ %
+ This comes down to the fact that the presence of particles does not greatly influence the current field. 
+ %
+ This is explained by the constant solid concentration around the value 0.2 for the entire pipe and the dynamic viscosity of the fluid then varies slightly.\\
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ (a)\includegraphics[scale = 0.3]{figs/V22}
+ \end{center}
+ \end{figure}
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ (b)\includegraphics[scale = 0.3]{figs/3CFD}
+ \end{center}
+ \end{figure}
+%
+\begin{figure}[ht!]
+ \centering
+ \caption{Radial distributions of the mean axial velocity of sand particles at the outlet of the pipe, for $\alpha_{s}in$ = 0.19 and $d_p= 0.09 mm$ : (a) ( $Uin = 2 m/s$), (b) ( $Uin = 3 m/s$).}\label{U}
+ \end{figure}
+%
+ Figure \ref{P} (a) and (b) shows the variations of the pressure drop per unit length $ \Delta P/L $ with the inlet velocity of the mixture $ U_{in}$. 
+ %
+ The present simulations obtained for two different particles diameters $d = 0.09 mm$ and $d=0.27 mm$, for nearly the same inlet concentration, and for a high velocities. 
+ %
+ Experimental data from (\citet {Randal-2004}) is used as a validation for current simulations. 
+ %
+ The pressure drop analyzed in current simulations augments almost linearly with $ U_{in} $. 
+ %
+ As anticipated, the pressure drop increases  because of the increased values of friction losses. 
+ %
+ Results fit well in figure \ref{P} (a) for $d=0.09 mm$, However, discrepancies are higher at high velocities. 
+ %
+ Contrary to figure \ref{P} (b) for $d= 0.27 mm$, a very good agreement is observed at high velocities, and a large gap is visible at low input velocities $U_{in} \leq 3 m/s$.\\
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ (a)\includegraphics[scale = 0.3]{figs/DP009}
+ \end{center}
+ \end{figure}
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ (b)\includegraphics[scale = 0.3]{figs/DP27}
+ \end{center}
+ \end{figure}
+ %
+\begin{figure}[ht!]
+ \centering
+ \caption{Pressure drop per unit of length $\Delta P/L$  versus slurry velocity: (a) ($\alpha_S=0.19$, $d=0.09 mm$), (b) ($\alpha_S=0.20$, $d=0.27 mm$).}
+ \label{P}
+ \end{figure}
+ %
+ It is also noted, that coarser particles compared to smaller ones, have superior pressure drop at lower flow rates and have an inferior one at higher flow rates.  
+ %
+ The reason behind this, is that the coarser particles at lower speeds deposit more which comes down to the gravitational effect, and subsequently, the amount of particles in the bed increases which leads to more frictions. 
+ %
+ While, in the case of smaller particles at higher velocities, the  pressure losses are bigger due to the larger surface area of the material.
+ %
 % %%%%%%%%%%
-% \section{Surrogate model}
-% Once the CFD results are validated with experimental data, this work aims to construct a surrogate model for the pressure drops for a two-phase flow within a piping system. The proposed model uses the empirical formula in Table \ref{tab:PD} for the pressure losses due to frictions for horizontal pipes. The density, however, is that of the water-sand mixture. The model has been calibrated to find the optimal friction factor f, that fit well with the CFD results trough a minimization process (figure \ref{optimal}), for different solid concentration $\alpha_s$ and two particle sizes $d_p$. %  so that the calculations of the pressure drops by the empirical formula correspond well to the CFD results. 
-
-% \begin{figure}[ht!]
-% \begin{center}
-% \includegraphics[scale = 0.35]{figs/alpha3D0.png}
-% \caption{Example of fitting of the empirical formula of pressure drop with the CFD results for $\alpha_S = 0.19$ and $d_p = 0.09 mm$.}
-% \label{optimal}
-% \end{center}
-% \end{figure}
-
-% Figure \ref{surro} shows the variation of the calibrated friction factor $f(\alpha_s,d_p)$ as function of the solid volume concentration for two different particle sizes.
-% \begin{figure}[ht!]
-% \begin{center}
-% \includegraphics[scale = 0.35]{figs/suur.png}
-% \caption{Optimal calibrated values of the friction factor along with the variation of the solid concentration for particles with diameter $d_p=0.09$ and $d_p=0.27$.}
-% \label{surro}
-% \end{center}
-% \end{figure}
-% According to figure \ref{surro}, one can for example for a given $\alpha_S$ and the specified particle diameters, interpolate to find values of f and then predict the pressure drop by substituting the found value of f in the empirical formula.
-% %%%%%%%%%%%%%
-% \subsubsection{Generalized Polynomial Chaos (GPC)}
+\section{Surrogate model}
+%
+ Once the CFD results are validated with experimental data, this work aims to construct a surrogate model for the pressure drops for a two-phase flow within a piping system. 
+ %
+ The proposed model uses the empirical formula in Table \ref{tab:PD} for the pressure losses due to frictions for horizontal pipes. 
+ %
+ The density, however, is that of the water-sand mixture. 
+ %
+ The model has been calibrated to find the optimal friction factor f, that fit well with the CFD results trough a minimization process (figure \ref{optimal}), for different solid concentration $\alpha_s$ and two particle sizes $d_p$. 
+ %
+ So that the calculations of the pressure drops by the empirical formula correspond well to the CFD results. 
+%
+ \begin{figure}[ht!]
+ \begin{center}
+ \includegraphics[scale = 0.35]{figs/alpha3D0.png}
+ \caption{Example of fitting of the empirical formula of pressure drop with the CFD results for $\alpha_S = 0.19$ and $d_p = 0.09 mm$.}
+ \label{optimal}
+ \end{center}
+ \end{figure}
+%
+ Figure \ref{surro} shows the variation of the calibrated friction factor $f(\alpha_s,d_p)$ as function of the solid volume concentration for two different particle sizes.
+ \begin{figure}[ht!]
+ \begin{center}
+ \includegraphics[scale = 0.35]{figs/suur.png}
+ \caption{Optimal calibrated values of the friction factor along with the variation of the solid concentration for particles with diameter $d_p=0.09$ and $d_p=0.27$.}
+ \label{surro}
+ \end{center}
+ \end{figure}
+ According to figure \ref{surro}, one can for example for a given $\alpha_S$ and the specified particle diameters, interpolate to find values of f and then predict the pressure drop by substituting the found value of f in the empirical formula.
+ %%%%%%%%%%%%%
+ \subsubsection{Generalized Polynomial Chaos (GPC)}
 
 
 
 
 % %%%%%%%%%%
-% \chapter{Conclusion} 
+\chapter{Conclusion} 
+%
+This paper is about modelling slurry flows in pipelines. 
+%
+A quite vast review of the literature of previous CFD investigations on slurry flow in horizontal pipelines was realized first, to decide on the relevant modeling approaches as well as the corresponding mathematical models. 
+%
+Based on this state of art, the two fluid model was the one chosen to work with, because it has the ability to capture well the physics of such complex flows while ensuring moderate computing time. 
+%
+Then, it was decided to begin with simulations of single phase flow into different pipe setups, to validate the turbulence model and to validate the approach of constructing a surrogate model throughout 3D numerical simulations. 
+%
+In this part CFD results matches the empirical data and theoretical models for pressure loss, also a really good agreement versus experimental data even at high velocities was found. 
+%
+After that, two phase flow simulations are performed, to investigate the physical phenomenons within such flows.
+%
+ CFD results showed high level correspondence with the presented  experimental data. 
+ %
+ Starting with the results of the pressure drops, the overall mean relative errors are limited to 15 $ \% $, and this validates our use of the CFD experiments to build a pressure loss surrogate model. 
+ %
+ However, some deviation is noted for the development of the solid concentration profile along the diameter of the pipe. 
+ %
+ Roughly speaking, the validity of the mathematical model under the given range conditions is proven, and these results will allow us to construct pressure loss laws. 
+ %
+Finally, a surrogate model is tested, which makes it possible to predict the pressure drops as a function of the variation in the solid concentration without performing simulations. 
+%
+Further tests are to come where greater variation in parameters such as solids concentration, particle size and even pipe diameter will be taken into account to increase result's accuracy. 
+%
+This type of surrogate models can be incorporated for plant's operators to predict pressure drops as a function of the variation of different flow parameters.
+%
+However, Further simulations are now required to account for enough wide range conditions to cover different types of applications in several industries, including phosphate slurries.
+%
 
-% This paper is about modelling slurry flows in pipelines. A quite  vast review of the literature of previous CFD investigations on slurry flow in horizontal pipelines was realized first, to decide on the relevant modeling approaches as well as the corresponding mathematical models. Based on this state of art, the two fluid model was the one choosed to work with, because it has the ability to capture well the physics of such complex flows while ensuring moderate computing time. Then, it was decided to begin with simulations of single phase flow into different pipe setups, to validate the turbulence model and to validate the approach of constructing a surrogate model throughout 3D numerical simulations. In this part CFD results matches the empirical data and theoretical models for pressure loss, also a really good agreement versus experimental data even at high velocities was found. After that, two phase flow simulations are performed, to investigate the physical phenomenons within such flows. 
-
-% CFD results showed high level correspondence with the presented  experimental data. Starting with the results of the pressure drops, the overall mean relative errors are limited to 15 $ \% $, and this validates our use of the CFD experiments to build a pressure loss surrogate model. However, some deviation is noted for the development of the solid concentration profile along the diameter of the pipe. Roughly speaking, the validity of the mathematical model under the given range conditions is proven, and these results will allow us to construct pressure loss laws. 
-% Finally, a surrogate model is tested, which makes it possible to predict the pressure drops as a function of the variation in the solid concentration without performing simulations. Further tests are to come where greater variation in parameters such as solids concentration, particle size and even pipe diameter will be taken into account to increase result's accuracy. This type of surrogate models can be incorporated for plant's operators to predict pressure drops as a function of the variation of different flow parameters.
-
-% %However, Further simulations are now required to account for enough wide range conditions to cover different types of applications in several industries, including phosphate slurries.
-
-
-
-% \section*{Acknowledgement} This work was supported by "Office Chérifien des Phosphates" (OCP Group) Morocco.
+ \section*{Acknowledgement} This work was supported by "Office Chérifien des Phosphates" (OCP Group) Morocco.
 
 
 
