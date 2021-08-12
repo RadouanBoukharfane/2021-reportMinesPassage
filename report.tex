@@ -223,28 +223,48 @@ They noticed that the agreement between the numerical results and the experiment
 %
 Results reflect good resemblance between measured and predicted pressure drops, solid concentrations and velocity profiles.
 %
- \citet{singh2020computational} investigated the flow characteristics of coal water slurry having high solid concentrations in slurry pipeline. 
+\citet{singh2020computational} investigated the flow characteristics of coal water slurry having high solid concentrations in slurry pipeline. 
+%
+They have noticed that the coal-water slurry shows Newtonian behaviour at 30$\%$ solid concentration (by-weight) and beyond this it depicts non Newtonian pseudo plastic behavior.
+%
+In this study also  SST k-$\omega$ turbulence model was found a better predictor over other models namely Standard k-$\epsilon$, RNG k-$\epsilon$, Realizable k-$\epsilon$ and Standard k-$\omega$ models. 
  %
- They have noticed that the coal-water slurry shows Newtonian behaviour at 30$\%$ solid concentration (by-weight) and beyond this it depicts non Newtonian pseudo plastic behavior.
- %
-  In this study also  SST k-$\omega$ turbulence model was found a better predictor over other models namely Standard k-$\epsilon$, RNG k-$\epsilon$, Realizable k-$\epsilon$ and Standard k-$\omega$ models. 
-  %
-  A year after \citet{Li-2018a} developed a useful three-dimensional multiphase hydrodynamic model based on the kinetic theory of granular flow, 
-  %
-  for simulating multi-sized glass beads-water slurry transport through pipelines, to investigate the distributions of solid concentration, flow velocity, granular pressure, and wall shear stress. 
-  %
-  The simulation results of different-sized particle behaviors in multi-sized slurry has significant reference value. 
+ A year after \citet{Li-2018a} developed a useful three-dimensional multiphase hydrodynamic model based on the kinetic theory of granular flow, 
+%
+for simulating multi-sized glass beads-water slurry transport through pipelines, to investigate the distributions of solid concentration, flow velocity, granular pressure, and wall shear stress. 
+%
+The simulation results of different-sized particle behaviors in multi-sized slurry has significant reference value. 
   %
   \citet{Li-2018b} also in the same year studied the effect of interaction of particles with different sizes on particle kinetics in multi-sized slurry, 
   %
-  first they concluded that the speed of resistance increase in a graded slurry is more gradual than in a single-sized slurry with the same conditions as the solid concentration increases, 
+first they concluded that the increase of speed of resistance  in a graded slurry is more gradual than in a single-sized slurry with the same conditions as the solid concentration increases, 
   %
-  then they found that the wall shear stress of coarse particles is significantly reduced by the existence of fine particles with increasing flow rate and solid concentration, and finally they affirmed that the existence of fine particles significantly reduces the collision intensity of coarse particles and velocity fluctuations in the multi-sized slurry. Recently, \citet{Messa-2020} considered again the same Two Fluid Model, but this time for a  deeper physical interpretation, and to provide recommendations of general validity. For the sake of generality and strength of the numerical model, three different data sets were considered for the experimental verification of the model, resulting in 108 different simulation scenarios covering a wide range of pipe diameters, solid concentrations, and slurry velocities.
+then they found that the wall shear stress of coarse particles is significantly reduced by the existence of fine particles with increasing flow rate and solid concentration, 
+  %
+and finally they affirmed that the existence of fine particles significantly reduces the collision intensity of coarse particles and velocity fluctuations in the multi-sized slurry. 
+%
 
 
 %%%%%%%%%%%%%
 \subsubsection{Summary on models classification}
-Following the literature review presented above, our CFD approach will be based on the Eulerian model (Two Fluid Model) as it is the most complete model and the most used one to deal with suspensions transport issues, and is confirmed to be the most accurate and  gives generally good results. While mixture model fails to predict pressure drops correctly and the amount of error increases rapidly with the slurry concentration  (\citet{D.R-2012}).  The main conclusions from the literature review are summed in table 2. The description of the TFM model is given in section \ref{Model}. The dynamics of the solid phase is modeled by the KTGF to consider both particle collisions and frictions. Also, based on the previously cited works, the turbulence of the continuous phase is treated by the k-$\epsilon$ based models, that generally shows reasonable robustness, and give reasonable accuracy for a wide range of applications. Yet, even though success is usually achieved using models based on the k-epsilon, it should be made clear that they may not perform well in the region near the wall (\citet{antaya2012modelling}). Therefore, a near-wall treatment model is presented in section \ref{NWT}, to address the weak performance of the choosed turbulence models in this area of the pipe.
+Following the literature review presented above, our CFD approach will be based on the Eulerian model (Two Fluid Model) as it is the most complete model and the most used one to deal with suspensions transport issues, 
+%
+and is confirmed to be the most accurate and  gives generally good results.
+%
+While mixture model fails to predict pressure drops correctly and the amount of error increases rapidly with the slurry concentration  (\citet{D.R-2012}).  
+%
+The main conclusions from the literature review are summed in table 2. 
+%
+The description of the TFM model is given in section \ref{Model}. 
+%
+The dynamics of the solid phase is modeled by the KTGF to consider both particle collisions and frictions. 
+%
+Also, based on the previously cited works, the turbulence of the continuous phase is treated by the k-$\epsilon$ based models, that generally shows reasonable robustness, and give reasonable accuracy for a wide range of applications. 
+%
+Yet, even though success is usually achieved using models based on the k-epsilon, it should be made clear that they may not perform well in the region near the wall (\citet{antaya2012modelling}). 
+%
+Therefore, a near-wall treatment model is presented in section \ref{NWT}, to address the weak performance of the choosed turbulence models in this area of the pipe.
+%
 \begin{table}[ht!]
 \caption{Summary on models classification }
 \begin{tabular}{p{10cm}}
@@ -258,9 +278,27 @@ Following the literature review presented above, our CFD approach will be based 
 
 %%%%%%
 % a relire.... 
-In fact,  modern modeling strategies, for industrial processes, integrates usually 3D simulation techniques using computational fluid dynamics (CFD) and/or discrete element methods (DEM). These 3D models are then integrated as surrogate models that can be used in operations simulation and monitoring tools (Decision Support Systems). Classically, response surface methodologies (RSM) are applied to build a polynomial surrogate model (\citet{Rabhi}), but also in recent works machine leaning techniques such as artificial neural networks (ANN) can be used (\citet{Seong}). The current modeling approach consists of  constructing 3D models for different type of pipe elements (horizontal, inclined, bended pipes), and then use them to construct surrogates that models the pressure drop within each element. Such models can then be used in dynamical models for monitoring slurry pipe systems and to conduct sizing studies to cover variations in the operation conditions like inlet pressure and inlet flow rate. This approach will first be applied to a single fluid flow to validate the approach of constructing a surrogate pressure drop model through 3D numerical simulation, and then to slurry flows with solid volume fraction up to 25\%. %corresponding to the applications we are aimed to cover
+In fact,  modern modeling strategies, for industrial processes, integrates usually 3D simulation techniques using computational fluid dynamics (CFD) and/or discrete element methods (DEM). 
+%
+These 3D models are then integrated as surrogate models that can be used in operations simulation and monitoring tools (Decision Support Systems). 
+%
+Classically, response surface methodologies (RSM) are applied to build a polynomial surrogate model (\citet{Rabhi}), but also in recent works machine leaning techniques such as artificial neural networks (ANN) can be used (\citet{Seong}). 
+%
+The current modeling approach consists of  constructing 3D models for different type of pipe elements (horizontal, inclined, bended pipes), and then use them to construct surrogates that models the pressure drop within each element. 
+%
+Such models can then be used in dynamical models for monitoring slurry pipe systems and to conduct sizing studies to cover variations in the operation conditions like inlet pressure and inlet flow rate. 
+%
+This approach will first be applied to a single fluid flow to validate the approach of constructing a surrogate pressure drop model through 3D numerical simulation, 
+%
+and then to slurry flows with solid volume fraction corresponding to the applications that are aimed to cover.
 
-A parametric analysis is conducted to investigate the impact of the variation in the particle size, solids concentration, and inlet velocity, on the solid concentration profile, the solid velocity profile and finally their effect on the variation in the pressure drop along the pipe. This analysis allows us to validates our simulations for turbulent slurry flows versus experimental data. The data used in this work is regarding a horizontal pipe case for Water-Sand slurry flow: transported solid volume fraction between 19  $\%$ and 45 $\%$; velocities between 1 m/s and 8.0 m/s; and particles sizes of 90 $\mu_m$ and 270 $\mu_m$. 
+A parametric analysis is conducted to investigate the impact of the variation in the particle size, solids concentration, and inlet velocity, 
+%
+on the solid concentration profile, the solid velocity profile and finally their effect on the variation in the pressure drop along the pipe. 
+%
+This analysis allows us to validates our simulations for turbulent slurry flows versus experimental data. 
+%
+The data used in this work is regarding a horizontal pipe case for Water-Sand slurry flow: transported solid volume fraction between 19  $\%$ and 45 $\%$; velocities between 1 m/s and 8.0 m/s; and particles sizes of 90 $\mu_m$ and 270 $\mu_m$. 
 
 
 
