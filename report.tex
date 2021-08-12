@@ -1,10 +1,13 @@
 \documentclass[11pt]{report} 
-
+%
 \usepackage{projectreport}
 \newcommand{\projecttitle}{CFD Simulation and Investigation of Slurry Flows in Pipelines}
-\newcommand{\name}{Marwane EL Karii}
+\newcommand{\name}{Marwane El Karii}
 \newcommand{\course}{}
 \newcommand{\submissiondate}{Octorber 2021}
+
+\usepackage{concmath}
+\usepackage[OT1]{fontenc}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -59,6 +62,7 @@ The coupling between the two phases depends on the amount of solids in the flow,
 This approach characterizes the majority of the earlier CFD investigations of slurry pipe flows which provides a good compromise between accuracy and computational cost.
 %
 Yet three models are possible within this approach.
+\end{itemize}
 %
 Table \ref{tab:eul-eul-comp} shows a comparison of the latter models.
 %
@@ -85,8 +89,7 @@ Examples: sludge flow (\cite{Ofei-2016}), sedimentation ((\cite{gopaliya-2016}),
 \end{tabular}
 \label{tab:eul-eul-comp}
 \end{table}
-{\footnotesize *Particle-laden flow = Particle charge flows refer to a two-phase flow in which one of the phases is continuously connected and the other phase consists of small immiscible particles and typically diluted.}
-\end{itemize}
+\footnote{Particle-laden flow = Particle charge flows refer to a two-phase flow in which one of the phases is continuously connected and the other phase consists of small immiscible particles and typically diluted.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem Description}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -132,15 +135,89 @@ From an application point of view, among the industrial stakes of the project of
 \item Optimize pipe operation according to pulp quality;
 \item Optimize energy consumption, etc;
 \end{itemize}
-
-
-%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Literature Review : slurry pipes modeling and simulation}
-% \chapter{CFD studies}
-
-A summary of the most relevant numerical studies on slurry flows in horizontal pipes published so far are reported, alongside with the adopted modelling approach. Beginning with Eulerian-Lagrangian approach, this latter was employed for this kind of applications for sand-water slurry by \citet{Capecelatro-2013}, where the Large Eddy Simulation (LES) method \citet{versteeg2007introduction} has been used to simulate the turbulent flow of the liquid phase, while the solid phase was treated by DPM.  \citet{AROLLA20151} used the same numerical setup to characterize a sand-water flow pattern for increasing values of liquid superficial velocity.  Always in the Eulerian-Lagrangian approach but this time it was employed with different characteristics such as transportation of coarse NaCl particles in brine by \citet{Uzi-2017}, where the liquid phase is handled by a computationally cheaper Reynolds-Average Navier-Stokes (RANS) technique, to examine the effects of the operating conditions on the flow. Concerning the mixture model, and at the start of 21st century, \citet{J-2003} performed CFD simulations for sand-water slurry flows through horizontal pipes, where a simplified 3D algebraic slip mixture (ASM) model is introduced along with RNG k–$\epsilon$ turbulent model to obtain the precise numerical solution in fully developed turbulent flow. They compared CFD results of mean pressure gradients with experimental results, and found a big discrepancy between them takes place when the mean velocities of slurry flows are lower than corresponding critical deposition velocities. \citet{C.X-2008} numerically investigated sand–water slurry flows in the entrance region of horizontal pipe, again using ASM model, and have focused mainly on illustrating and comparing the developing processes of various flow parameters. \citet{Silva-2016} performed simulations for Saline Water-Glass beads slurry using Mixture Model coupled with a High Reynolds k–$\epsilon$ turbulence model, results were validated with data attained with an Electrical tomography apparatus. The model produced accurate representations for the highest flow rates, while showing some deviations for the lower flow rate.
-However, the majority of the earlier CFD investigations of slurry pipe flows were performed using the Two Fluid Model. In most TFMs, constitutive equations for the solid phase derived from the Kinetic Theory of Granular Flow (KTGF) were employed. The most relevant numerical studies on slurry flows in horizontal pipes published so far, the study of  \citet{herna2008cfd} for sand-water slurry, where homogeneous and heterogeneous flow regimes without bed were considered along with predictions of pressure gradients at the fully developed zone, a year after \citet{Ekambara-2009} investigated the effect of in situ solids volume concentration, particle size, mixture velocity, and pipe diameter, on local time-averaged solids concentration profiles, particle and liquid velocity profiles, and frictional pressure loss. Excellent agreement between the predicted and the experimental was obtained. \citet{Liangyon-2009} used the same numerical configuration to simulate flow of coal-water slurries (CWS) in a horizontal pipeline, with bimodal distribution for coal particles. They found out that the simulation results of the binary solid phase model is closer to experimental data, as compared to the results of the single solid phase model. \citet{bossio2009eulerian} focused on modeling of non-newtonien Laterite-Sand slurry where the mean pressure gradients were compared with experimental data. \citet{antaya2012modelling}  performed simulations for concentrated mixtures of sand-water slurry with monosized and bimodal particle sizes. Shear stress model (SST) was tested in addition to the k–$\epsilon$ model to treat the turbulence of the continuous  phase. Success has been achieved in the use of  k–$\epsilon$ model,  with the SST model being superior, especially in the near-wall region. However \citet{D.R-2012}, tried both  Mixture and  two-phase model to simulate mono-dispersed fine particles at high concentration of glass beads mixed with water. They proved again the failure of the Mixture Model predictions at high velocities and high solid concentrations compared to TFM. \cite{Y.Y-2012} worked on an unusual type of slurry flows which is Slush nitrogen flow using the 2D Eulerian – Eulerian multiphase approach. The per-phase k–$\epsilon$ turbulence model is used in the study to model the turbulent two-phase flow. The effects of the flow velocity and the mean solid volume fraction on the flow characteristics of slush nitrogen are investigated numerically in this study. The same team in very next year \citet{Jiang-2013} investigated the same slush and nitrogen flow. Based on the experimental and numerical results they distinguished three flow patterns which for each one they had studied the variation of pressure drop. And they obtained the general correlation of the friction factor with the slush Reynolds number of slush nitrogen with various solid volume fractions. \citet{Wang-2013} applied the two fluid model to describe an ice slurry flow without considering ice melting. After validation of the model with experimental data, it was used to investigate  the distributions of ice slurry flow, ice particle concentration and pressure drop in horizontal, vertical and 90 elbow pipes respectively. They found that for pressure drop, The numerical model is found being able to provide results in good agreement with the experimental data where the relative errors are limited to 20$\%$. \citet{Messa-2013} developed a new two-fluid model for the simulation of Sand and Glass beads Water slurry. Contrary to previous works with TFM models, they did not integrate the kinetic theory of granular flows to determine solid viscosity. They studied the effect of the wall boundary condition for the solid phase on the pressure gradient, where they found that the best match between measurements and computations is obtained when the equilibrium logarithmic law of Launder and Spalding for smooth walls is applied to the solid phase. Then \citet{Messa-2014} used the new TFM model to  simulate a fully-suspended Sand-Water slurry flow in horizontal pipes and bends. They claimed that the model is robust and numerically stable, and requires relatively short computer time to provide a converged steady-state solution. The novelty of the proposed model and its better performance compared to similar ones reside in the method of accounting for some key physical mechanisms governing these flows, namely turbulent dispersion, interphase friction, and viscous and mechanical contributions to friction. \citet{Messa-2015} further modified \citet{Messa-2014} model by incorporating a new wall boundary condition for the solid phase, a more general correlation for the viscosity of the slurry, accounting for particle shape along with a different solution algorithm. These changes resulted in low computational effort with improved performance. They verified the modified model by comparing its outcomes with experimental results for sand-water slurries available in the literature. returning to the TFM combined with KTGF, \citet{Gopaliya-2014} studied the effects of grain size on various Sand-Water slurry flow parameters. They found that at the same  volumetric concentration, pressure drop increases with increase in grain size. \citet{Hashemi-2016} performed experiments in a 265 mm diameter pipe loop with sand-in-water slurries, then selected experimental conditions were  numerically simulated using a commercial CFD package, ANSYS CFX. They noticed that the agreement between the numerical results and the experimental data is  concentration dependent, with relatively closer agreement at lower concentrations. \citet{kumar2019experimental} presented experimental data of iron-ore slurry flow cases through 105 mm pipe, the obtained results are validated using TFM-KTGF model. Results reflect good resemblance between measured and predicted pressure drops, solid concentrations and velocity profiles. \citet{singh2020computational} investigated the flow characteristics of coal water slurry having high solid concentrations in slurry pipeline. They have noticed that the coal-water slurry shows Newtonian behaviour at 30$\%$ solid concentration (by-weight) and beyond this it depicts non Newtonian pseudo plastic behavior. In this study also  SST k-$\omega$ turbulence model was found a better predictor over other models namely Standard k-$\epsilon$, RNG k-$\epsilon$, Realizable k-$\epsilon$ and Standard k-$\omega$ models. A year after \citet{Li-2018a} developed a useful three-dimensional multiphase hydrodynamic model based on the kinetic theory of granular flow, for simulating multi-sized glass beads-water slurry transport through pipelines, to investigate the distributions of solid concentration, flow velocity, granular pressure, and wall shear stress. The simulation result of different-sized particle behaviors in multi-sized slurry has significant reference value. \citet{Li-2018b} also in the same year studied the effect of interaction of particles with different sizes on particle kinetics in multi-sized slurry, first They concluded that the speed of resistance increase in a graded slurry is more gradual than in a single-sized slurry with the same conditions as the solid concentration increases,then they found that the wall shear stress of coarse particles is significantly reduced by the existence of fine particles with increasing flow rate and solid concentration, and finally they affirmed that the existence of fine particles significantly reduces the collision intensity of coarse particles and velocity fluctuations in the multi-sized slurry. Recently, \citet{Messa-2020} considered again the same Two Fluid Model, but this time for a  deeper physical interpretation, and to provide recommendations of general validity. For the sake of generality and strength of the numerical model, three different data sets were considered for the experimental verification of the model, resulting in 108 different simulation scenarios covering a wide range of pipe diameters, solid concentrations, and slurry velocities.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+A summary of the most relevant numerical studies on slurry flows in horizontal pipes published so far are reported, alongside with the adopted modelling approach.
+%
+Beginning with Eulerian-Lagrangian approach, this latter was employed for this kind of applications for sand-water slurry by \citet{Capecelatro-2013}, where the Large Eddy Simulation (LES) method \citet{versteeg2007introduction} has been used to simulate the turbulent flow of the liquid phase, while the solid phase was treated by DPM.
+%
+\citet{AROLLA20151} used the same numerical setup to characterize a sand-water flow pattern for increasing values of liquid superficial velocity.
+%
+Always in the Eulerian-Lagrangian approach but this time it was employed with different characteristics such as transportation of coarse NaCl particles in brine by \citet{Uzi-2017}, where the liquid phase is handled by a computationally cheaper Reynolds-Average Navier-Stokes (RANS) technique, to examine the effects of the operating conditions on the flow.
+%
+Concerning the mixture model, \citet{J-2003} performed CFD simulations for sand-water slurry flows through horizontal pipes, where a simplified 3D algebraic slip mixture (ASM) model is introduced along with RNG k–$\epsilon$ turbulent model to obtain the precise numerical solution in fully developed turbulent flow.
+%
+They compared CFD results of mean pressure gradients with experimental results, and found a big discrepancy between them takes place when the mean velocities of slurry flows are lower than corresponding critical deposition velocities.
+%
+\citet{C.X-2008} numerically investigated sand–water slurry flows in the entrance region of horizontal pipe, again using ASM model, and have focused mainly on illustrating and comparing the developing processes of various flow parameters.
+%
+\citet{Silva-2016} performed simulations for Saline Water-Glass beads slurry using Mixture Model coupled with a High Reynolds k–$\epsilon$ turbulence model, results were validated with data attained with an Electrical tomography apparatus.
+%
+The model produced accurate representations for the highest flow rates, while showing some deviations for the lower flow rate.
+%
+However, the majority of the earlier CFD investigations of slurry pipe flows were performed using the Two Fluid Model.
+%
+In most TFMs, constitutive equations for the solid phase derived from the Kinetic Theory of Granular Flow (KTGF) were employed.
+%
+The most relevant numerical studies on slurry flows in horizontal pipes published so far, the study of \citet{herna2008cfd} for sand-water slurry, where homogeneous and heterogeneous flow regimes without bed were considered along with predictions of pressure gradients at the fully developed zone.
+%
+\citet{Ekambara-2009} investigated the effect of in situ solids volume concentration, particle size, mixture velocity, and pipe diameter, on local time-averaged solids concentration profiles, particle and liquid velocity profiles, and frictional pressure loss.
+%
+Excellent agreement between the predicted and the experimental was obtained.
+%
+\citet{Liangyon-2009} used the same numerical configuration to simulate flow of coal-water slurries (CWS) in a horizontal pipeline, with bimodal distribution for coal particles.
+%
+They found out that the simulation results of the binary solid phase model is closer to experimental data, as compared to the results of the single solid phase model.
+%
+\citet{bossio2009eulerian} focused on modeling of non-Newtonian Laterite-Sand slurry where the mean pressure gradients were compared with experimental data.
+%
+\citet{antaya2012modelling}  performed simulations for concentrated mixtures of sand-water slurry with mono-sized and bimodal particle sizes.
+%
+Shear stress model (SST) was tested in addition to the k–$\epsilon$ model to treat the turbulence of the continuous  phase. Success has been achieved in the use of k–$\epsilon$ model,  with the SST model being superior, especially in the near-wall region.
+%
+However \citet{D.R-2012}, tried both  Mixture and  two-phase model to simulate mono-dispersed fine particles at high concentration of glass beads mixed with water.
+%
+They proved again the failure of the Mixture Model predictions at high velocities and high solid concentrations compared to TFM.
+%
+\cite{Y.Y-2012} worked on an unusual type of slurry flows which is Slush nitrogen flow using the 2D Eulerian – Eulerian multiphase approach.
+%
+The per-phase k–$\epsilon$ turbulence model is used in the study to model the turbulent two-phase flow.
+%
+The effects of the flow velocity and the mean solid volume fraction on the flow characteristics of slush nitrogen are investigated numerically in this study.
+%
+The same team in very next year \citet{Jiang-2013} investigated the same slush and nitrogen flow. Based on the experimental and numerical results they distinguished three flow patterns, which for each one they had studied the variation of pressure drop.
+%
+They obtained the general correlation of the friction factor with the slush Reynolds number of slush nitrogen with various solid volume fractions.
+%
+\citet{Wang-2013} applied the two fluid model to describe an ice slurry flow without considering ice melting.
+%
+After validation of the model with experimental data, it was used to investigate the distributions of ice slurry flow, ice particle concentration and pressure drop in horizontal, vertical and 90 elbow pipes respectively.
+%
+They found that for pressure drop, the numerical model is found being able to provide results in good agreement with the experimental data where the relative errors are limited to 20$\%$.
+%
+\citet{Messa-2013} developed a new two-fluid model for the simulation of Sand and Glass beads Water slurry.
+%
+Contrary to previous works with TFM models, they did not integrate the kinetic theory of granular flows to determine solid viscosity.
+%
+They studied the effect of the wall boundary condition for the solid phase on the pressure gradient, where they found that the best match between measurements and computations is obtained when the equilibrium logarithmic law of Launder and Spalding for smooth walls is applied to the solid phase.
+%
+Then, \citet{Messa-2014} used the new TFM model to  simulate a fully-suspended Sand-Water slurry flow in horizontal pipes and bends.
+%
+They claimed that the model is robust and numerically stable, and requires relatively short computer time to provide a converged steady-state solution.
+%
+The novelty of the proposed model and its better performance compared to similar ones reside in the method of accounting for some key physical mechanisms governing these flows, namely turbulent dispersion, interphase friction, and viscous and mechanical contributions to friction.
+%
+\citet{Messa-2015} further modified \citet{Messa-2014} model by incorporating a new wall boundary condition for the solid phase, a more general correlation for the viscosity of the slurry, accounting for particle shape along with a different solution algorithm. These changes resulted in low computational effort with improved performance.
+%
+They verified the modified model by comparing its outcomes with experimental results for sand-water slurries available in the literature. returning to the TFM combined with KTGF, \citet{Gopaliya-2014} studied the effects of grain size on various Sand-Water slurry flow parameters.
+%
+They found that at the same  volumetric concentration, pressure drop increases with increase in grain size.
+%
+\citet{Hashemi-2016} performed experiments in a 265 mm diameter pipe loop with sand-in-water slurries, then selected experimental conditions were  numerically simulated using a commercial CFD package, ANSYS CFX.
+%
+They noticed that the agreement between the numerical results and the experimental data is  concentration dependent, with relatively closer agreement at lower concentrations. \citet{kumar2019experimental} presented experimental data of iron-ore slurry flow cases through 105 mm pipe, the obtained results are validated using TFM-KTGF model. Results reflect good resemblance between measured and predicted pressure drops, solid concentrations and velocity profiles. \citet{singh2020computational} investigated the flow characteristics of coal water slurry having high solid concentrations in slurry pipeline. They have noticed that the coal-water slurry shows Newtonian behaviour at 30$\%$ solid concentration (by-weight) and beyond this it depicts non Newtonian pseudo plastic behavior. In this study also  SST k-$\omega$ turbulence model was found a better predictor over other models namely Standard k-$\epsilon$, RNG k-$\epsilon$, Realizable k-$\epsilon$ and Standard k-$\omega$ models. A year after \citet{Li-2018a} developed a useful three-dimensional multiphase hydrodynamic model based on the kinetic theory of granular flow, for simulating multi-sized glass beads-water slurry transport through pipelines, to investigate the distributions of solid concentration, flow velocity, granular pressure, and wall shear stress. The simulation result of different-sized particle behaviors in multi-sized slurry has significant reference value. \citet{Li-2018b} also in the same year studied the effect of interaction of particles with different sizes on particle kinetics in multi-sized slurry, first They concluded that the speed of resistance increase in a graded slurry is more gradual than in a single-sized slurry with the same conditions as the solid concentration increases,then they found that the wall shear stress of coarse particles is significantly reduced by the existence of fine particles with increasing flow rate and solid concentration, and finally they affirmed that the existence of fine particles significantly reduces the collision intensity of coarse particles and velocity fluctuations in the multi-sized slurry. Recently, \citet{Messa-2020} considered again the same Two Fluid Model, but this time for a  deeper physical interpretation, and to provide recommendations of general validity. For the sake of generality and strength of the numerical model, three different data sets were considered for the experimental verification of the model, resulting in 108 different simulation scenarios covering a wide range of pipe diameters, solid concentrations, and slurry velocities.
 
 
 %%%%%%%%%%%%%
