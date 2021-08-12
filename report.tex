@@ -2,7 +2,7 @@
 %
 \usepackage{projectreport}
 \newcommand{\projecttitle}{CFD Simulation and Investigation of Slurry Flows in Pipelines}
-\newcommand{\name}{Marwane El Karii}
+\newcommand{\name}{Marwane ElKarii}
 \newcommand{\course}{}
 \newcommand{\submissiondate}{Octorber 2021}
 
@@ -217,7 +217,29 @@ They found that at the same  volumetric concentration, pressure drop increases w
 %
 \citet{Hashemi-2016} performed experiments in a 265 mm diameter pipe loop with sand-in-water slurries, then selected experimental conditions were  numerically simulated using a commercial CFD package, ANSYS CFX.
 %
-They noticed that the agreement between the numerical results and the experimental data is  concentration dependent, with relatively closer agreement at lower concentrations. \citet{kumar2019experimental} presented experimental data of iron-ore slurry flow cases through 105 mm pipe, the obtained results are validated using TFM-KTGF model. Results reflect good resemblance between measured and predicted pressure drops, solid concentrations and velocity profiles. \citet{singh2020computational} investigated the flow characteristics of coal water slurry having high solid concentrations in slurry pipeline. They have noticed that the coal-water slurry shows Newtonian behaviour at 30$\%$ solid concentration (by-weight) and beyond this it depicts non Newtonian pseudo plastic behavior. In this study also  SST k-$\omega$ turbulence model was found a better predictor over other models namely Standard k-$\epsilon$, RNG k-$\epsilon$, Realizable k-$\epsilon$ and Standard k-$\omega$ models. A year after \citet{Li-2018a} developed a useful three-dimensional multiphase hydrodynamic model based on the kinetic theory of granular flow, for simulating multi-sized glass beads-water slurry transport through pipelines, to investigate the distributions of solid concentration, flow velocity, granular pressure, and wall shear stress. The simulation result of different-sized particle behaviors in multi-sized slurry has significant reference value. \citet{Li-2018b} also in the same year studied the effect of interaction of particles with different sizes on particle kinetics in multi-sized slurry, first They concluded that the speed of resistance increase in a graded slurry is more gradual than in a single-sized slurry with the same conditions as the solid concentration increases,then they found that the wall shear stress of coarse particles is significantly reduced by the existence of fine particles with increasing flow rate and solid concentration, and finally they affirmed that the existence of fine particles significantly reduces the collision intensity of coarse particles and velocity fluctuations in the multi-sized slurry. Recently, \citet{Messa-2020} considered again the same Two Fluid Model, but this time for a  deeper physical interpretation, and to provide recommendations of general validity. For the sake of generality and strength of the numerical model, three different data sets were considered for the experimental verification of the model, resulting in 108 different simulation scenarios covering a wide range of pipe diameters, solid concentrations, and slurry velocities.
+They noticed that the agreement between the numerical results and the experimental data is  concentration dependent, with relatively closer agreement at lower concentrations. 
+%
+\citet{kumar2019experimental} presented experimental data of iron-ore slurry flow cases through 105 mm pipe, the obtained results are validated using TFM-KTGF model. 
+%
+Results reflect good resemblance between measured and predicted pressure drops, solid concentrations and velocity profiles.
+%
+ \citet{singh2020computational} investigated the flow characteristics of coal water slurry having high solid concentrations in slurry pipeline. 
+ %
+ They have noticed that the coal-water slurry shows Newtonian behaviour at 30$\%$ solid concentration (by-weight) and beyond this it depicts non Newtonian pseudo plastic behavior.
+ %
+  In this study also  SST k-$\omega$ turbulence model was found a better predictor over other models namely Standard k-$\epsilon$, RNG k-$\epsilon$, Realizable k-$\epsilon$ and Standard k-$\omega$ models. 
+  %
+  A year after \citet{Li-2018a} developed a useful three-dimensional multiphase hydrodynamic model based on the kinetic theory of granular flow, 
+  %
+  for simulating multi-sized glass beads-water slurry transport through pipelines, to investigate the distributions of solid concentration, flow velocity, granular pressure, and wall shear stress. 
+  %
+  The simulation results of different-sized particle behaviors in multi-sized slurry has significant reference value. 
+  %
+  \citet{Li-2018b} also in the same year studied the effect of interaction of particles with different sizes on particle kinetics in multi-sized slurry, 
+  %
+  first they concluded that the speed of resistance increase in a graded slurry is more gradual than in a single-sized slurry with the same conditions as the solid concentration increases, 
+  %
+  then they found that the wall shear stress of coarse particles is significantly reduced by the existence of fine particles with increasing flow rate and solid concentration, and finally they affirmed that the existence of fine particles significantly reduces the collision intensity of coarse particles and velocity fluctuations in the multi-sized slurry. Recently, \citet{Messa-2020} considered again the same Two Fluid Model, but this time for a  deeper physical interpretation, and to provide recommendations of general validity. For the sake of generality and strength of the numerical model, three different data sets were considered for the experimental verification of the model, resulting in 108 different simulation scenarios covering a wide range of pipe diameters, solid concentrations, and slurry velocities.
 
 
 %%%%%%%%%%%%%
@@ -473,65 +495,91 @@ where $\frac{e}{D}$ is the relative roughness, and is related the pipe material 
 
 
 % %%%%%%%%%%%%%%%%%%%%%
-% \section{Turbulence model }
+ \section{Turbulence model }
+%
+The turbulence aspect must be ensured when transporting a slurry. 
+%
+Since, this will guarantee the pseudo-homogeneity of the mixture and will subsequently prevent total sedimentation of the solid phase. 
+%
+In this work, the flow is characterized by a Reynolds number of order of $10^6$. This is why the turbulence of water for both single or two phase flow is treated with the standard $k$- $\epsilon$ model, which is a high Reynolds turbulence model. 
+%
+However, wall functions are used to treat the boundary-layer development up to the wall. Eq.(\ref{k}) and Eq.(\ref{epsilon}) present the model variables, the turbulent kinetic energy k and the turbulence dissipation rate $\epsilon$ respectively:
 
-% The turbulence aspect must be ensured when transporting slurry. Since, this will guarantee the pseudo-homogeneity of the mixture and will subsequently prevent total sedimentation of the solid phase. In this work, the flow is characterized by a Reynolds number of order of $10^6$. This is why the turbulence of water for both single or two phase flow is treated with the standard $k$- $\epsilon$ model, which is a high Reynolds turbulence model. However, wall functions are used to treat the boundary-layer development up to the wall. Eq.(\ref{k}) and Eq.(\ref{epsilon}) present the model variables, the turbulent kinetic energy k and the turbulence dissipation rate $\epsilon$ respectively:
+ \begin{equation}
+ \frac{\partial(\rho_W k_W)}{\partial t}+\frac{\partial\left(\rho_W k_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu_W+\frac{\mu_{t}}{\sigma_{k}}\right) \frac{\partial k_W}{\partial x_{j}}\right]+G_{k}+G_{b}-\rho_W \varepsilon_W+S_{k}
+ \label{k}
+ \end{equation}
 
-% \begin{equation}
-% \frac{\partial(\rho_W k_W)}{\partial t}+\frac{\partial\left(\rho_W k_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu_W+\frac{\mu_{t}}{\sigma_{k}}\right) \frac{\partial k_W}{\partial x_{j}}\right]+G_{k}+G_{b}-\rho_W \varepsilon_W+S_{k}
-% \label{k}
-% \end{equation}
+ \begin{equation}
+ \frac{\partial(\rho_W \varepsilon_W)}{\partial t}+\frac{\partial\left(\rho_W \varepsilon_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu+\frac{\mu_{t}}{\sigma_{\varepsilon}}\right) \frac{\partial \varepsilon_W}{\partial x_{j}}\right]+\frac{C_{1 \varepsilon} \varepsilon_W}{k_W}\left(G_{k}+C_{3 \varepsilon} G_{b}\right)-C_{2 \varepsilon} \rho \frac{\varepsilon_{W}^{2}}{k_W}+S_{\varepsilon}
+ \label{epsilon}
+ \end{equation}
 
-% \begin{equation}
-% \frac{\partial(\rho_W \varepsilon_W)}{\partial t}+\frac{\partial\left(\rho_W \varepsilon_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu+\frac{\mu_{t}}{\sigma_{\varepsilon}}\right) \frac{\partial \varepsilon_W}{\partial x_{j}}\right]+\frac{C_{1 \varepsilon} \varepsilon_W}{k_W}\left(G_{k}+C_{3 \varepsilon} G_{b}\right)-C_{2 \varepsilon} \rho \frac{\varepsilon_{W}^{2}}{k_W}+S_{\varepsilon}
-% \label{epsilon}
-% \end{equation}
+ \section{Near-wall treatment} \label{NWT}
 
-% \section{Near-wall treatment} \label{NWT}
+ The near-wall treatment is done using the wall functions method. 
+ %
+ The wall functions consist of wall boundary conditions that impose values for the kinetic energy $k_{P}$ and the dissipation rate $\epsilon_{P}$  in the center of the cells near the wall as shown by Eq.(\ref{kp}) and Eq.(\ref{epsilonp}), which bridges turbulent quantities on the wall.
+%
+ \begin{equation}
+ k_{P} =\frac{\sqrt{f {U_{W}^2 }}}{\sqrt{2 C\mu }}
+ \label{kp}
+ \end{equation}
+%
+ \begin{equation}
+ \epsilon_{P} =\frac{C^{3/4}_{\mu } \ K^{3/2}_{P}}{k\ y_{P}}
+ \label{epsilonp}
+ \end{equation}
+ \(C_{\mu}=0.09\) is a model coefficient of the \(k-\epsilon\);\quad $k=0.41$ is Von Karman constant; 
+ %
+  $y_{P}$ is the height to the center of the cell adjacent to the wall and it can be calculated from $y^+$ according to the Eq.(\ref{yp}).
+%
+ \begin{equation}
+y_{p}=\frac{y^{+} \mu_W}{\rho_W\sqrt{f u_{W}}}
+ \label{yp}
+ \end{equation}
 
-% The near-wall treatment is done using the wall functions method. The wall functions consist of wall boundary conditions that impose values for the kinetic energy $k_{P}$ and the dissipation rate $\epsilon_{P}$ variables in the center of the cells near the wall as shown by Eq.(\ref{kp}) and Eq.(\ref{epsilonp}), which bridges turbulent quantities on the wall.
-% \begin{equation}
-% k_{P} =\frac{\sqrt{f {U_{W}^2 }}}{\sqrt{2 C\mu }}
-% \label{kp}
-% \end{equation}
+ For the inlet turbulence conditions, Eq.(\ref{kin}) present the turbulent kinetic energy (\(k_{in}\)) that is obtained from the turbulence intensity (\(I\)) and the water inlet velocity \((U_W)\) (\citet{Messa-2020}):
+%
+ \begin{equation}
+ k_{in} =\frac{3}{2} U_W^{2} I^{2} 
+ \label{kin}
+ \end{equation}
 
-% \begin{equation}
-% \epsilon_{P} =\frac{C^{3/4}_{\mu } \ K^{3/2}_{P}}{k\ y_{P}}
-% \label{epsilonp}
-% \end{equation}
-% \(C_{\mu}=0.09\) is a model coefficient of the \(k-\epsilon\);\quad $k=0.41$ is Von Karman constant; \quad $y_{P}$ is the height to the center of the cell adjacent to the wall and it can be calculated from $y^+$ according to the Eq.(\ref{yp}).
-
-% \begin{equation}
-% y_{p}=\frac{y^{+} \mu_W}{\rho_W\sqrt{f u_{W}}}
-% \label{yp}
-% \end{equation}
-
-% For the inlet turbulence conditions, Eq.(\ref{kin}) present the turbulent kinetic energy (\(k_{in}\)) that is obtained from the turbulence intensity (\(I\)) and the water inlet velocity \((U_W)\) (\citet{Messa-2020}):
-% \begin{equation}
-% k_{in} =\frac{3}{2} U_W^{2} I^{2} 
-% \label{kin}
-% \end{equation}
-
-% Next, the length scale (l) of the turbulence at the inlet should be specified. For an internal pipe flow, this is usually \(\sim 7 \%\) of the pipe diameter. So the turbulent dissipation rate ( \(\epsilon_{in}\) ) is calculated as shown in Eq.(\ref{epsilon in}): 
-% \begin{equation}
-% \epsilon_{in}=C_{\mu} \frac{k_{in}^{3 / 2}}{l} 
-% \label{epsilon in}
-% \end{equation}
+ Next, the length scale (l) of the turbulence at the inlet should be specified. For an internal pipe flow, this is usually \(\sim 7 \%\) of the pipe diameter. So the turbulent dissipation rate ( \(\epsilon_{in}\) ) is calculated as shown in Eq.(\ref{epsilon in}): 
+ \begin{equation}
+ \epsilon_{in}=C_{\mu} \frac{k_{in}^{3 / 2}}{l} 
+ \label{epsilon in}
+ \end{equation}
 
 
 % %%%%%%%%%%%%%%%%%%%
-% \chapter{Methodology}
-% After choosing the mathematical models necessary to simulate the diphasic flow, comes the part of the implementation under the CFD tool. In this work the open-source CFD toolbox openfoam was choosed to perform the simulations, considering its advantages by comparing it with other CFD tools. Figure \ref{openfoam} shows OpenFOAM software advantages.\\
-% \begin{figure}[ht!]
-% \begin{center}
-% %\include{diag}
-% \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.45]{figs/0F2.png}
-% \caption{ Why OpenFOAM ?}
-% \label{openfoam}
-% \end{center}
-% \end{figure} 
-% The simulation workflow begins with the pre-processing where the geometry along with the mesh are generated, after comes the part of choosing the solver which represent well our model, and then the post-processing where the results of the simulation are visualized.
-% The twoPhaseEulerFoam solver is the one which represents well our model and since openfoam is an open-source software the solver has been modified to become an isothermal flows solver, since there is no heat exchange between the phases. Then, in the constant file the different forces which act on the flow have been defined according to the assumptions made, where thus the interphase momentum exchange models have been defined. Then the components of the KTGF are implemented taking into consideration the restitution coefficients. The implementation of the model also requires special attention to the boundary conditions which need a good understanding of the physical phenomenon to define them.
+ \chapter{Methodology}
+ After choosing the mathematical models necessary to simulate the diphasic flow, comes the part of the implementation under the CFD tool. 
+ %
+ In this work the open-source CFD toolbox openfoam was choosed to perform the simulations, considering its advantages by comparing it with other CFD tools.
+ %
+  Figure \ref{openfoam} shows OpenFOAM software advantages.\\
+  %
+\begin{figure}[ht!]
+ \begin{center}
+ \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.45]{figs/0F2.png}
+ \caption{ Why OpenFOAM ?}
+ \label{openfoam}
+ \end{center}
+ \end{figure} 
+ %
+ The simulation workflow begins with the pre-processing where the geometry along with the mesh are generated, 
+ %
+ after comes the part of choosing the solver which represent well our model, and then the post-processing where the results of the simulation are visualized.
+%
+The twoPhaseEulerFoam solver is the one which represents well our model and  the solver has been modified to become an isothermal flows solver, since there is no heat exchange between the phases. 
+%
+Then, in the constant file the different forces which act on the flow have been defined according to the assumptions made, where thus the interphase momentum exchange models have been defined.
+%
+ Then the components of the KTGF are implemented taking into consideration the restitution coefficients. 
+ %
+ The implementation of the model also requires special attention to the boundary conditions which need a good understanding of the physical phenomenon to define them.
 % %%%%
 % \chapter{Results and discussions} \label{results}
 % \section{Single phase flow} \label{single flow}
