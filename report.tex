@@ -8,12 +8,15 @@
 
 \usepackage{concmath}
 \usepackage[OT1]{fontenc}
+\usepackage{subcaption}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \maketitle
 \tableofcontents
+\renewcommand{\thepage}{\arabic{page}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Introduction}
 \label{chap:intro}
@@ -228,19 +231,19 @@ Results reflect good resemblance between measured and predicted pressure drops, 
 They have noticed that the coal-water slurry shows Newtonian behaviour at 30$\%$ solid concentration (by-weight) and beyond this it depicts non Newtonian pseudo plastic behavior.
 %
 In this study also  SST k-$\omega$ turbulence model was found a better predictor over other models namely Standard k-$\epsilon$, RNG k-$\epsilon$, Realizable k-$\epsilon$ and Standard k-$\omega$ models. 
- %
- A year after \citet{Li-2018a} developed a useful three-dimensional multiphase hydrodynamic model based on the kinetic theory of granular flow, 
+%
+A year after \citet{Li-2018a} developed a useful three-dimensional multiphase hydrodynamic model based on the kinetic theory of granular flow, 
 %
 for simulating multi-sized glass beads-water slurry transport through pipelines, to investigate the distributions of solid concentration, flow velocity, granular pressure, and wall shear stress. 
 %
 The simulation results of different-sized particle behaviors in multi-sized slurry has significant reference value. 
-  %
-  \citet{Li-2018b} also in the same year studied the effect of interaction of particles with different sizes on particle kinetics in multi-sized slurry, 
-  %
+%
+\citet{Li-2018b} also in the same year studied the effect of interaction of particles with different sizes on particle kinetics in multi-sized slurry, 
+%
 first they concluded that the increase of speed of resistance  in a graded slurry is more gradual than in a single-sized slurry with the same conditions as the solid concentration increases, 
-  %
+%
 then they found that the wall shear stress of coarse particles is significantly reduced by the existence of fine particles with increasing flow rate and solid concentration, 
-  %
+%
 and finally they affirmed that the existence of fine particles significantly reduces the collision intensity of coarse particles and velocity fluctuations in the multi-sized slurry. 
 %
 
@@ -588,7 +591,7 @@ where $\frac{e}{D}$ is the relative roughness, and is related the pipe material 
 
 
 % %%%%%%%%%%%%%%%%%%%%%
- \section{Turbulence model }
+\section{Turbulence model }
 %
 The turbulence aspect must be ensured when transporting a slurry. 
 %
@@ -598,116 +601,116 @@ In this work, the flow is characterized by a Reynolds number of order of $10^6$.
 %
 However, wall functions are used to treat the boundary-layer development up to the wall. Eq.(\ref{k}) and Eq.(\ref{epsilon}) present the model variables, the turbulent kinetic energy k and the turbulence dissipation rate $\epsilon$ respectively:
 
- \begin{equation}
- \frac{\partial(\rho_W k_W)}{\partial t}+\frac{\partial\left(\rho_W k_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu_W+\frac{\mu_{t}}{\sigma_{k}}\right) \frac{\partial k_W}{\partial x_{j}}\right]+G_{k}+G_{b}-\rho_W \varepsilon_W+S_{k}
- \label{k}
- \end{equation}
+\begin{equation}
+\frac{\partial(\rho_W k_W)}{\partial t}+\frac{\partial\left(\rho_W k_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu_W+\frac{\mu_{t}}{\sigma_{k}}\right) \frac{\partial k_W}{\partial x_{j}}\right]+G_{k}+G_{b}-\rho_W \varepsilon_W+S_{k}
+\label{k}
+\end{equation}
 
- \begin{equation}
- \frac{\partial(\rho_W \varepsilon_W)}{\partial t}+\frac{\partial\left(\rho_W \varepsilon_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu+\frac{\mu_{t}}{\sigma_{\varepsilon}}\right) \frac{\partial \varepsilon_W}{\partial x_{j}}\right]+\frac{C_{1 \varepsilon} \varepsilon_W}{k_W}\left(G_{k}+C_{3 \varepsilon} G_{b}\right)-C_{2 \varepsilon} \rho \frac{\varepsilon_{W}^{2}}{k_W}+S_{\varepsilon}
- \label{epsilon}
- \end{equation}
+\begin{equation}
+\frac{\partial(\rho_W \varepsilon_W)}{\partial t}+\frac{\partial\left(\rho_W \varepsilon_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu+\frac{\mu_{t}}{\sigma_{\varepsilon}}\right) \frac{\partial \varepsilon_W}{\partial x_{j}}\right]+\frac{C_{1 \varepsilon} \varepsilon_W}{k_W}\left(G_{k}+C_{3 \varepsilon} G_{b}\right)-C_{2 \varepsilon} \rho \frac{\varepsilon_{W}^{2}}{k_W}+S_{\varepsilon}
+\label{epsilon}
+\end{equation}
 
- \section{Near-wall treatment} \label{NWT}
+\section{Near-wall treatment} \label{NWT}
 
- The near-wall treatment is done using the wall functions method. 
- %
- The wall functions consist of wall boundary conditions that impose values for the kinetic energy $k_{P}$ and the dissipation rate $\epsilon_{P}$  in the center of the cells near the wall as shown by Eq.(\ref{kp}) and Eq.(\ref{epsilonp}), which bridges turbulent quantities on the wall.
+The near-wall treatment is done using the wall functions method. 
 %
- \begin{equation}
- k_{P} =\frac{\sqrt{f {U_{W}^2 }}}{\sqrt{2 C\mu }}
- \label{kp}
- \end{equation}
+The wall functions consist of wall boundary conditions that impose values for the kinetic energy $k_{P}$ and the dissipation rate $\epsilon_{P}$  in the center of the cells near the wall as shown by Eq.(\ref{kp}) and Eq.(\ref{epsilonp}), which bridges turbulent quantities on the wall.
 %
- \begin{equation}
- \epsilon_{P} =\frac{C^{3/4}_{\mu } \ K^{3/2}_{P}}{k\ y_{P}}
- \label{epsilonp}
- \end{equation}
- \(C_{\mu}=0.09\) is a model coefficient of the \(k-\epsilon\);\quad $k=0.41$ is Von Karman constant; 
- %
-  $y_{P}$ is the height to the center of the cell adjacent to the wall and it can be calculated from $y^+$ according to the Eq.(\ref{yp}).
+\begin{equation}
+k_{P} =\frac{\sqrt{f {U_{W}^2 }}}{\sqrt{2 C\mu }}
+\label{kp}
+\end{equation}
 %
- \begin{equation}
+\begin{equation}
+\epsilon_{P} =\frac{C^{3/4}_{\mu } \ K^{3/2}_{P}}{k\ y_{P}}
+\label{epsilonp}
+\end{equation}
+\(C_{\mu}=0.09\) is a model coefficient of the \(k-\epsilon\);\quad $k=0.41$ is Von Karman constant; 
+%
+$y_{P}$ is the height to the center of the cell adjacent to the wall and it can be calculated from $y^+$ according to the Eq.(\ref{yp}).
+%
+\begin{equation}
 y_{p}=\frac{y^{+} \mu_W}{\rho_W\sqrt{f u_{W}}}
- \label{yp}
- \end{equation}
+\label{yp}
+\end{equation}
 %
 For the inlet turbulence conditions, Eq.(\ref{kin}) present the turbulent kinetic energy (\(k_{in}\)) that is obtained from the turbulence intensity (\(I\)) and the water inlet velocity \((U_W)\) (\citet{Messa-2020}):
 %
- \begin{equation}
- k_{in} =\frac{3}{2} U_W^{2} I^{2} 
- \label{kin}
- \end{equation}
+\begin{equation}
+k_{in} =\frac{3}{2} U_W^{2} I^{2} 
+\label{kin}
+\end{equation}
 %
- Next, the length scale (l) of the turbulence at the inlet should be specified. 
+Next, the length scale (l) of the turbulence at the inlet should be specified. 
 %
 For an internal pipe flow, this is usually \(\sim 7 \%\) of the pipe diameter. So the turbulent dissipation rate ( \(\epsilon_{in}\) ) is calculated as shown in Eq.(\ref{epsilon in}): 
 %
- \begin{equation}
- \epsilon_{in}=C_{\mu} \frac{k_{in}^{3 / 2}}{l} 
- \label{epsilon in}
- \end{equation}
+\begin{equation}
+\epsilon_{in}=C_{\mu} \frac{k_{in}^{3 / 2}}{l} 
+\label{epsilon in}
+\end{equation}
 % %%%%%%%%%%%%%%%%%%%
- \chapter{Methodology}
- %
- After choosing the mathematical models necessary to simulate the diphasic flow, comes the part of the implementation under the CFD tool. 
- %
- In this work the open-source CFD toolbox openfoam was choosed to perform the simulations, considering its advantages by comparing it with other CFD tools.
- %
-  Figure \ref{openfoam} shows OpenFOAM software advantages.\\
-  %
+\chapter{Methodology}
+%
+After choosing the mathematical models necessary to simulate the diphasic flow, comes the part of the implementation under the CFD tool. 
+%
+In this work the open-source CFD toolbox openfoam was choosed to perform the simulations, considering its advantages by comparing it with other CFD tools.
+%
+Figure \ref{openfoam} shows OpenFOAM software advantages.\\
+%
 \begin{figure}[ht!]
- \begin{center}
- \includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.45]{figs/0F2.png}
- \caption{ Why OpenFOAM ?}
- \label{openfoam}
- \end{center}
- \end{figure} 
- %
- The simulation workflow begins with the pre-processing where the geometry along with the mesh are generated, 
- %
- after comes the part of choosing the solver which represent well our model, and then the post-processing where the results of the simulation are visualized.
+\begin{center}
+\includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale=0.45]{figs/0F2.png}
+\caption{ Why OpenFOAM ?}
+\label{openfoam}
+\end{center}
+\end{figure} 
+%
+The simulation workflow begins with the pre-processing where the geometry along with the mesh are generated, 
+%
+after comes the part of choosing the solver which represent well our model, and then the post-processing where the results of the simulation are visualized.
 %
 The twoPhaseEulerFoam solver is the one which represents well our model and  the solver has been modified to become an isothermal flows solver, since there is no heat exchange between the phases. 
 %
 Then, in the constant file the different forces which act on the flow have been defined according to the assumptions made, where thus the interphase momentum exchange models have been defined.
 %
- Then the components of the KTGF are implemented taking into consideration the restitution coefficients. 
- %
- The implementation of the model also requires special attention to the boundary conditions which need a good understanding of the physical phenomenon to define them.
-% %%%%
- \chapter{Results and discussions} \label{results}
- %
- \section{Single phase flow} \label{single flow}
+Then the components of the KTGF are implemented taking into consideration the restitution coefficients. 
 %
- To carry out validation of the mathematical model along with the turbulence model and the treatment process for the area near the wall, simulations for a single phase flow are performed for three pipe setups. 
- %
- Moreover, these simulations will help to validate the approach of constructing surrogates models. 
- %
- The predicted values of the theoretical correlations presented in section \ref{single}, are used to judge the CFD results. 
- %
- The implementation of the models is done under the OpenFOAM software V7. Table \ref{table 2} summarizes different boundary conditions for different inputs. 
+The implementation of the model also requires special attention to the boundary conditions which need a good understanding of the physical phenomenon to define them.
+% %%%%
+\chapter{Results and discussions} \label{results}
+%
+\section{Single phase flow} \label{single flow}
+%
+To carry out validation of the mathematical model along with the turbulence model and the treatment process for the area near the wall, simulations for a single phase flow are performed for three pipe setups. 
+%
+Moreover, these simulations will help to validate the approach of constructing surrogates models. 
+%
+The predicted values of the theoretical correlations presented in section \ref{single}, are used to judge the CFD results. 
+%
+The implementation of the models is done under the OpenFOAM software V7. Table \ref{table 2} summarizes different boundary conditions for different inputs. 
 %
 \begin{table}[ht!]
- \begin{center}
- \caption{Summary of the selected boundary conditions}
- \begin{tabular}{cccc}
- \hline Field & Inlet & Outlet & Solid walls  \\
- \hline
- \(\epsilon_{W}\) & fixedValue & zeroGradient & wall function\\
- \(k_{W}\) & fixedValue & zeroGradient & wall function \\
- \(v_{t}\) & zeroGradient & zeroGradient & wallFunction \\
- \(p\) & zeroGradient & atmospheric pressure & zeroGradient  \\
- \(U_W\) & fixedValue  & zeroGradient & noSlip \\
- \hline
- \label{table 2}
- \end{tabular}
- \end{center}
- \end{table}
+\begin{center}
+\caption{Summary of the selected boundary conditions}
+\begin{tabular}{cccc}
+\hline Field & Inlet & Outlet & Solid walls  \\
+\hline
+\(\epsilon_{W}\) & fixedValue & zeroGradient & wall function\\
+\(k_{W}\) & fixedValue & zeroGradient & wall function \\
+\(v_{t}\) & zeroGradient & zeroGradient & wallFunction \\
+\(p\) & zeroGradient & atmospheric pressure & zeroGradient  \\
+\(U_W\) & fixedValue  & zeroGradient & noSlip \\
+\hline
+\label{table 2}
+\end{tabular}
+\end{center}
+\end{table}
 
 % %%%%%%%%%%%%%%%%%%%
- \subsubsection{Horizontal pipe}
- %
+\subsubsection{Horizontal pipe}
+%
 The geometry consists of a 40 $m$ horizontal pipe, with an internal diameter of 0.9 $m$. 
 %
 Figure \ref{horiz}(a) and \ref{horiz}(b), shows a 2D section and the 3D meshed geometry. 
@@ -720,47 +723,45 @@ The Wall roughness is set at 0.045 $mm$. The inlet velocity is in ranges of 1 to
 %
 The pressure at the outlet is fixed as atmospheric pressure. The latter initial condition is the same for the next simulations of inclined and bended pipe in subsections \ref{inclined} and \ref{bended} respectively.
 %
- \begin{minipage}[t]{0.35\textwidth}
- \begin{figure}[ht!]
- \begin{center}
- (a)\includegraphics[scale =0.09]{figs/section.png}
- \end{center}
- \end{figure}
-% %  
- \begin{minipage}[t]{0.5\textwidth}
- \begin{figure}[ht!]
- (b)\includegraphics[scale = 0.25]{figs/HP-2.png}
- \end{figure}
-% %  
 \begin{figure}[ht!]
- {\Large\bf GPU}
- \caption{Horizontal pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
- \label{horiz}
- \end{figure}
- %
- For a horizontal pipe, we have regular pressure drops, which are generated by the friction of the fluid on the internal wall of the pipe throughout its passage. 
- %
- They depend on, the length of the pipe, the relative roughness of the pipe, the speed of the fluid circulating in the pipe ($U_{in}$ $m/s$), as presented in table 1. 
- %
- Therefore, As can be seen in Figure \ref{horiz:theo}, the pressure losses are increasing relatively with inlet velocities. 
- %
- For this current case of a horizontal pipe, experimental data were found for water flow in (\citet{Randal-2004}), and also a good agreement was found with cfd results as shown in Figure \ref{horiz:theo}.\\
- %
+\centering
+\begin{subfigure}{0.40\textwidth}\centering 
+\includegraphics[scale=0.09]{figs/section.png}
+\caption{}
+\end{subfigure}
+% 
+\begin{subfigure}{0.40\textwidth}\centering 
+\includegraphics[scale = 0.25]{figs/HP-2.png}
+\caption{}
+\end{subfigure}
+% %  
+\caption{Horizontal pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
+\label{horiz}
+\end{figure}
+
+For a horizontal pipe, we have regular pressure drops, which are generated by the friction of the fluid on the internal wall of the pipe throughout its passage. 
+%
+They depend on, the length of the pipe, the relative roughness of the pipe, the speed of the fluid circulating in the pipe ($U_{in}$ $m/s$), as presented in table 1. 
+%
+Therefore, As can be seen in Figure \ref{horiz:theo}, the pressure losses are increasing relatively with inlet velocities. 
+%
+For this current case of a horizontal pipe, experimental data were found for water flow in (\citet{Randal-2004}), and also a good agreement was found with cfd results as shown in Figure \ref{horiz:theo}.\\
+%
 The mean average percentage error is defined as follows:
 %
- \footnotesize{$$
- \text{MAPE}=\left\{\frac{1}{n} \sum_{k=1}^{n}\left[\frac{(d p / d x)_{\text{pred}}-(d p / d x)_{\text{theory} }}{(d p / d x)_{\text{theory}}}\right]\right\} 100
- $$\\
- \text{MAPE} = 1.21 $\%$}
- \begin{figure}[ht!]
- \begin{center}
- \includegraphics[scale = 0.45]{figs/WH}
- \caption{ Pressure drop in horizontal pipe. 
- %
- Present pressure drops from CFD simulations versus empirical formula in table \ref{tab:PD} and experimental measurements.}\label{horiz:theo}
- %
- \end{center}
- \end{figure}
+\footnotesize{$$
+\text{MAPE}=\left\{\frac{1}{n} \sum_{k=1}^{n}\left[\frac{(d p / d x)_{\text{pred}}-(d p / d x)_{\text{theory} }}{(d p / d x)_{\text{theory}}}\right]\right\} 100
+$$\\
+\text{MAPE} = 1.21 $\%$}
+\begin{figure}[ht!]
+\begin{center}
+\includegraphics[scale = 0.45]{figs/WH}
+\caption{ Pressure drop in horizontal pipe. 
+%
+Present pressure drops from CFD simulations versus empirical formula in table \ref{tab:PD} and experimental measurements.}\label{horiz:theo}
+%
+\end{center}
+\end{figure}
 
 
 
@@ -768,25 +769,19 @@ The mean average percentage error is defined as follows:
  %
  In this section, the geometry consists of a 40 $m$ inclined pipe with 0.9 $m$ diameter and a 5.73 degree negative slope. Figure \ref{incline}(a) and \ref{incline}(b) show the
  cross-section and profile mesh.\\
- %
- \begin{minipage}[t]{0.35\textwidth}
- \begin{figure}[ht!]
- \begin{center}
- (a)\includegraphics[scale =0.09]{figs/section.png}
- \label{fig:gauss}
- \end{center}
- \end{figure}
-
- \begin{figure}[ht!]
- (b)\includegraphics[width=6cm,height=2.5cm]{figs/IP}
- \label{fig:gauss}
- \end{figure}
-
- \begin{figure}[ht!]
- \centering
- \caption{Inclined pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
- \label{incline}
- \end{figure}
+%
+\begin{figure}[ht!]
+\centering
+\begin{subfigure}{0.40\textwidth}
+\includegraphics[scale =0.09]{figs/section.png}
+\caption{}
+\end{subfigure}
+\begin{subfigure}{0.40\textwidth}
+\includegraphics[width=6cm,height=2.5cm]{figs/IP}
+\end{subfigure}
+\caption{Inclined pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
+\label{incline}
+\end{figure}
 
  Concerning this pipe setup, it is characterized by a changing elevation. 
  %
@@ -802,9 +797,8 @@ The mean average percentage error is defined as follows:
  %
  As noticed the pressure gain decreases while increasing the velocity, and this comes back to the augmentation of  friction losses.\\
  %
-\begin{minipage}[t]{0.45\textwidth}
- \vspace{3.5cm}
- \small{The mean average percentage error (MAPE) = 0.97 $\%$}
+
+ % \small{The mean average percentage error (MAPE) = 0.97 $\%$}
 %
  \begin{figure}[ht!]
  \begin{center}
@@ -813,39 +807,33 @@ The mean average percentage error is defined as follows:
  \label{inclin}
  \end{center}
  \end{figure}
- \end{minipage}
-% %%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%
 %
  \subsubsection{Bended pipe}\label{bended}
- For this setup, the geometry consists of a $45$ degree bended pipe, of 6 $m$ equivalent length with 0.9 $m$ diameter. Figure \ref{bend}(a) and \ref{bend}(b) show the cross-section and profile mesh.\\
- \begin{minipage}[t]{0.35\textwidth}
- \begin{figure}[ht!]
- \begin{center}
- (a)\includegraphics[scale =0.09]{figs/section.png}
- \label{fig:gauss}
- \end{center}
- \end{figure}
-%
- \begin{figure}[ht!]
- (b)\includegraphics[scale = 0.17]{figs/bend.png}
- \label{fig:gauss}
- \end{figure}
-%
- \begin{figure}[ht!]
- \centering
- \caption{Bended pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
- \label{bend}
- \end{figure}
+ For this setup, the geometry consists of a $45$ degree bended pipe, of 6 $m$ equivalent length with 0.9 $m$ diameter. Figure \ref{bend}(a) and \ref{bend}(b) show the cross-section and profile mesh.
+
+\begin{figure}[ht!]
+\centering
+\begin{subfigure}{0.40\textwidth}
+\includegraphics[scale =0.09]{figs/section.png}
+\caption{}
+\end{subfigure}
+\begin{subfigure}{0.40\textwidth}
+\includegraphics[scale = 0.17]{figs/bend.png}
+\caption{}
+\end{subfigure}
+\caption{Bended pipe geometry: (a) Cross-section mesh, (b) Profile mesh }
+\label{bend}
+\end{figure}
 %
  This pipe setup is more complex, since in addition to the previously discussed components of the  kinetic losses, another component is added namely the singular pressure drop as in table \ref{tab:PD}. 
  %
  The singular pressure drops are mainly due to the geometric modification of the pipe, such as changes of direction like bends. 
  %
  Figure \ref{bend:theo} shows that the pressure loss is increased in such geometries.
- %
- \begin{minipage}[t]{0.45\textwidth}
- \vspace{3.5cm}
- \small{The mean average percentage error (MAPE) = 7.99 $\%$}
+
 %
 \begin{figure}[ht!]
  \begin{center}
@@ -854,7 +842,6 @@ The mean average percentage error is defined as follows:
  \label{bend:theo}
  \end{center}
  \end{figure}
- \end{minipage}
  %
 The pressure drop formulae constitute surrogate models for pressures calculations in piping systems with newtonian fluids such as water. 
 %
@@ -1148,10 +1135,10 @@ On figure \ref{solid}(b) the solid concentration is increased up to $33$ $\%$, b
  \end{center}
  \end{figure}
  According to figure \ref{surro}, one can for example for a given $\alpha_S$ and the specified particle diameters, interpolate to find values of f and then predict the pressure drop by substituting the found value of f in the empirical formula.
- %%%%%%%%%%%%%
+%%%%%%%%%%%%
  \subsubsection{Generalized Polynomial Chaos (GPC)}
 
-
+TBD
 
 
 % %%%%%%%%%%
@@ -1186,7 +1173,7 @@ This type of surrogate models can be incorporated for plant's operators to predi
 However, Further simulations are now required to account for enough wide range conditions to cover different types of applications in several industries, including phosphate slurries.
 %
 
- \section*{Acknowledgement} This work was supported by "Office Chérifien des Phosphates" (OCP Group) Morocco.
+\section*{Acknowledgement} This work was supported by "Office Chérifien des Phosphates" (OCP Group) Morocco.
 
 
 
