@@ -246,10 +246,9 @@ then they found that the wall shear stress of coarse particles is significantly 
 %
 and finally they affirmed that the existence of fine particles significantly reduces the collision intensity of coarse particles and velocity fluctuations in the multi-sized slurry. 
 %
-
-
-%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Summary on models classification}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Following the literature review presented above, our CFD approach will be based on the Eulerian model (Two Fluid Model) as it is the most complete model and the most used one to deal with suspensions transport issues, 
 %
 and is confirmed to be the most accurate and  gives generally good results.
@@ -266,21 +265,24 @@ Also, based on the previously cited works, the turbulence of the continuous phas
 %
 Yet, even though success is usually achieved using models based on the k-epsilon, it should be made clear that they may not perform well in the region near the wall (\citet{antaya2012modelling}). 
 %
-Therefore, a near-wall treatment model is presented in section \ref{NWT}, to address the weak performance of the choosed turbulence models in this area of the pipe.
+Therefore, a near-wall treatment model is presented in section \ref{NWT}, to address the weak performance of the choosed turbulence models in this area of the pipe. See Table \ref{tab:summ-mods-app} for a summary on model classification.
 %
-\begin{table}[ht!]
-\caption{Summary on models classification }
-\begin{tabular}{p{10cm}}
+
+\begin{table}[h!]
 \centering
-\includegraphics[trim=0cm 0cm 0cm 0cm,clip,scale= 0.69]{figs/class.png}
+\begin{tabular}{p{6.0cm}|p{9.0cm}}
+\hline\hline
+DPM (Eulerian-Lagrangian Appraoch) &
+The discrete phase must be present at a fairly low volume fraction, usually less than 10-12\% \\ \hline
+Mixture Model &
+There is a big discrepancy between CFD results with experimental, especially at lower flow rates \\ \hline{}
+TFM Model &
+TFM is accurate and gives generally good results comparing to the mixture model. TFM results are better and closer to the experimental data in the case of bimodal particle sizes or at higher velocities. \\ \hline\hline
 \end{tabular}
+\caption{Summary on models classification}
+\label{tab:summ-mods-app}
 \end{table}
-
-%%%%%%%%%%%%
-
-
-%%%%%%
-% a relire.... 
+%
 In fact,  modern modeling strategies, for industrial processes, integrates usually 3D simulation techniques using computational fluid dynamics (CFD) and/or discrete element methods (DEM). 
 %
 These 3D models are then integrated as surrogate models that can be used in operations simulation and monitoring tools (Decision Support Systems). 
@@ -304,16 +306,7 @@ This analysis allows us to validates our simulations for turbulent slurry flows 
 The data used in this work is regarding a horizontal pipe case for Water-Sand slurry flow: transported solid volume fraction between 19  $\%$ and 45 $\%$; velocities between 1 m/s and 8.0 m/s; and particles sizes of 90 $\mu_m$ and 270 $\mu_m$. 
 
 
-
-
-
-%The rest of this paper is structured in three sections. Section \ref{Theory} presents the adopted 3D, two-fluid, turbulent model for our simulations. Then in section \ref{results},  a validation of the approach on a single phase pipe flow is realized in (subsection \ref{single flow}). Then, and for the case of slurry flows, subsection \ref{Two Phase} contains the parametric analysis to investigate the impact of the variation in the particle size, solids concentration, and inlet velocity, on the solid concentration profile, the solid velocity profile and their effect on the variation in the pressure drop along the slurry pipe. This section ends with a discussion (subsection 3.3) about the effect of the specularity modeling coefficient. Finally, section 4 presents the main conclusions of our work.
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%A detailed review of modeling and optimisation strategies for process system engineering of multiphase systems is presented in \cite{Cisternas}. 
-%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Theoretical and empirical models}
 \label{sec:heory}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -385,42 +378,39 @@ $\mathcal{C}_{\mathrm{d}}$, a fixed value of $0.5$ is used throughout the presen
 %%%%%%%%%%%
 The solid phase is modelled in this Eulerian framework as an interpenetrating fluid but with a viscosity that is determined by the kinetic theory of granular flows.
 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Solid-phase viscosity}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 Solid-phase viscosity is determined using Kinetic Theory of Granular flows(KTFG) which is based on the kinetic theory of gases 
 %
 in a generalized way to take into account collisions of inelastic particles to define a granular temperature $\theta$ in solid phase which directly affects the phase stress tensor (\cite{Gonzalez-2017}). 
 %
-Analogical to the thermodynamic temperature for gases, the granular temperature $\Theta=\frac{1}{3}<v_{s}^{\prime 2}>$ was introduced as a measure for the energy of the fluctuating velocity of the particles  Lun et al. 1987.
+Analogical to the thermodynamic temperature for gases, the granular temperature $\Theta$ was introduced as a measure for the energy of the fluctuating velocity of the particles.
 %
 The equation of conservation of solids fluctuating energy can be expressed as \cite{Wang-2013}: 
 
-\begin{equation}
-\frac{3}{2}\left[\frac{\partial}{\partial t}\left(\alpha_{s} \rho_{s} \Theta_{s}\right)+\nabla \cdot\left(\alpha_{s} \rho_{s} \mathbf{u}_{s} \Theta_{s}\right)\right]= 
-\underbrace{\left(-P_{s} \mathbf{I}+\tau_{s}\right): \nabla \mathbf{u}_{s}}_{\text {Production due to shear stress }}+\underbrace{\nabla \cdot\left(\kappa_{\Theta} \nabla \Theta\right)}_{\text { Diffusion}}
+\begin{equation}\label{eq:diffitheta}
+\frac{3}{2}\left[\partial_t\left(\alpha_{\mathfrak{s}} \varrho_{s} \Theta_{\mathfrak{s},i}\right)+\partial_i\left(\alpha_{\mathfrak{s}}\varrho_{\mathfrak{s}}\mathfrak{u}_{\mathfrak{s},i} \Theta_{\mathfrak{s}}\right)\right]= \underbrace{\partial_i\left(-\mathfrak{p}_{\mathfrak{s}}\mathfrak{u}_{\mathfrak{s},i}+\mathfrak{u}_{\mathfrak{s},i}\tau_{\mathfrak{s},ij}\right)}_{\mathcal{T}_1}+\underbrace{\partial_i\left(\kappa_{\Theta}\partial_i\Theta_i\right)}_{\mathcal{T}_2}-\underbrace{\gamma_{\Theta_S}}_{\mathcal{T}_3}+\underbrace{\Phi_{\mathrm{LS}}}_{\mathcal{T}_4}
 \end{equation}
-$$
--\underbrace{\gamma_{\Theta_S}}_{\text {Dissipation due  to  inelastic collisions }}+\underbrace{\Phi_{LS}}_{\text {Dissipation/Production  due to the interaction with the carrier }}
-$$
-
-Rather than solving the complete granular energy balance given in Equation 1, \cite{Ekambara-2009} assume the granular energy is in a steady state and dissipated locally and neglect convection and diffusion. 
+where the term $\mathcal{T}_1$ stands for the production term due to shear stress, $\mathcal{T}_2$ for diffusion, $\mathcal{T}_3$ for dissipation due to inelastic collisions, and $\mathcal{T}_4$ for tthe term responsible for dissipation/droduction  due to the interaction with the carrier.
 %
-Retaining only the generation and the dissipation terms, Equation 1 simplifies to an algebraic expression for the granular temperature:
+Rather than solving the complete granular energy balance given in Eq.~\ref{eq:diffitheta}, \cite{Ekambara-2009} assume the granular energy is in a steady state and dissipated locally and neglect convection and diffusion. 
+%
+Retaining only the generation and the dissipation terms, Eq.~\ref{eq:diffitheta} simplifies to an algebraic expression for the granular temperature:
 %
 \begin{equation}
-\left(-p_{\mathrm{s}} \overrightarrow{\mathrm{I}}+\vec{\tau}_{\mathrm{s}}\right): \vec{\nabla} \vec{u}_{\mathrm{s}}-\gamma_{\Theta \mathrm{s}}+\Phi_{LS}=0
+\partial_i\left(-\mathfrak{p}_{\mathfrak{s}}\mathfrak{u}_{\mathfrak{s},i}+\mathfrak{u}_{\mathfrak{s},i}\tau_{\mathfrak{s},ij}\right)-\gamma_{\Theta_S}+\Phi_{\mathrm{LS}}=0
 \end{equation}
 %
 Expression for all the terms can be derived (\cite{GID-1994}):
 %
 \begin{equation}
-\gamma_{\Theta_{\mathrm{S}}}=\frac{12\left(1-e^{2}\right) g_{0}}{d_{\mathrm{S}} \sqrt{\pi}} \rho_{\mathrm{S}} \alpha_{\mathrm{S}}^{2} \Theta_{\mathrm{S}}^{3 / 2}
-\end{equation}
-\begin{equation}
-\phi_{\mathrm{LS}}=-3 \mathrm{K}_{\mathrm{SL}} \Theta_{\mathrm{S}}
-\end{equation}
-\begin{equation}
-p_{\mathrm{S}}=\alpha_{\mathrm{S}} \rho_{\mathrm{S}} \Theta_{\mathrm{S}}+2 \rho_{\mathrm{S}}\left(1+e\right) \alpha_{\mathrm{S}}^{2} g_{0} \Theta_{\mathrm{S}})
+\begin{cases}
+\gamma_{\Theta_{\mathfrak{s}}}=\frac{12\left(1-e^{2}\right) g_{0}}{d_{\mathfrak{s}} \sqrt{\pi}} \varrho_{\mathfrak{s}} \alpha_{\mathfrak{s}}^{2} \Theta_{\mathfrak{s}}^{3/2}\\
+\Phi_{\mathrm{LS}}=-3 \mathrm{K}_{\mathrm{SL}} \Theta_{\mathfrak{s}}\\
+\mathfrak{p}_{\mathfrak{s}}=\alpha_{\mathfrak{s}} \varrho_{\mathfrak{s}} \Theta_{\mathfrak{s}}+2 \varrho_{\mathfrak{s}}\left(1+e\right) \alpha_{\mathfrak{s}}^{2} g_{0} \Theta_{\mathfrak{s}}
+\end{cases}
 \end{equation}
 
 where \(e_{\mathrm{}}\) is the coefficient of restitution for particle collisions that quantifies the elasticity of particle collisions. 
@@ -434,7 +424,7 @@ The solid bulk viscosity $\lambda_S$ accounts for the granular particles resista
 It can be calculated by the following form (\citet{Ekambara-2009}):
 %
 \begin{equation}
-\lambda_{\mathrm{S}}=\frac{4}{3} \alpha_{\mathrm{S}} \rho_{\mathrm{S}} d_{\mathrm{S}} g_{0}\left(1+e\right)\left(\frac{\Theta_{\mathrm{S}}}{\pi}\right)^{\frac{1}{2}}
+\lambda_{\mathrm{S}}=\frac{4}{3} \alpha_{\mathrm{S}} \varrho_{\mathrm{S}} d_{\mathrm{S}} g_{0}\left(1+e\right)\left(\frac{\Theta_{\mathrm{S}}}{\pi}\right)^{\frac{1}{2}}
 \end{equation}
 Then, the solid shear viscosity $\mu_S$ based on granular kinetic theory consists of a collisional contribution and from a kinetic contribution. It can be represented as (\citet{GID-1994}):
 \begin{equation}
@@ -452,13 +442,13 @@ Table 2 show different Kinetic Theory Correlations for $\mu_S$ and $g_0$.
 \hline
 &{\hspace{4cm} \bf Granular viscosity \boldsymbol{$\mu_s$}} \\
 \hline\\
-\bf \citet{Lun_1984}  &  $  \displaystyle \frac{4}{5} \alpha_{s}^{2} \rho_{s} d_{s} g_{0}(1+e) \sqrt{\frac{\Theta}{\pi}}+\frac{1}{15} \sqrt{\Theta \pi} \frac{\rho_{s} d_{s} g_{0}(1+e)\left(\frac{3}{2} e-\frac{1}{2}\right) \alpha_{s}^{2}}{\frac{3}{2}-\frac{1}{2} e}+\frac{1}{6} \sqrt{\Theta \pi} \frac{\rho_{s} d_{s} \alpha_{s}\left(\frac{s}{2}e+\frac{1}{4}\right)}{\frac{3}{2}-\frac{e}{2}}+\frac{10}{96} \sqrt{\Theta \pi} \frac{\rho_{s} d_{s}}{(1+e)\left(\frac{3}{2}-\frac{1}{2} e\right) g_{0}}
+\bf \citet{Lun_1984}  &  $  \displaystyle \frac{4}{5} \alpha_{s}^{2} \varrho_{s} d_{s} g_{0}(1+e) \sqrt{\frac{\Theta}{\pi}}+\frac{1}{15} \sqrt{\Theta \pi} \frac{\varrho_{s} d_{s} g_{0}(1+e)\left(\frac{3}{2} e-\frac{1}{2}\right) \alpha_{s}^{2}}{\frac{3}{2}-\frac{1}{2} e}+\frac{1}{6} \sqrt{\Theta \pi} \frac{\varrho_{s} d_{s} \alpha_{s}\left(\frac{s}{2}e+\frac{1}{4}\right)}{\frac{3}{2}-\frac{e}{2}}+\frac{10}{96} \sqrt{\Theta \pi} \frac{\varrho_{s} d_{s}}{(1+e)\left(\frac{3}{2}-\frac{1}{2} e\right) g_{0}}
 $ \\
-\bf\citet{symlal1993} &$\displaystyle  \frac{4}{5} \alpha_{s}^{2} \rho_{s} d_{s} g_{0}(1+e) \sqrt{\frac{\Theta}{\pi}}+\frac{1}{15} \sqrt{\Theta \pi} \rho_{s} d_{s} g_{0} \frac{(1+e)\left(\frac{{3}}{2} e-\frac{1}{2}\right)}{\frac{3}{2}-\frac{e}{2}} \alpha_{s}^{2}+\frac{1}{12} \frac{\alpha_{s} d_{s} \rho_{s} \sqrt{\pi \Theta}}{\frac{3}{2}-\frac{e}{2}}
+\bf\citet{symlal1993} &$\displaystyle  \frac{4}{5} \alpha_{s}^{2} \varrho_{s} d_{s} g_{0}(1+e) \sqrt{\frac{\Theta}{\pi}}+\frac{1}{15} \sqrt{\Theta \pi} \varrho_{s} d_{s} g_{0} \frac{(1+e)\left(\frac{{3}}{2} e-\frac{1}{2}\right)}{\frac{3}{2}-\frac{e}{2}} \alpha_{s}^{2}+\frac{1}{12} \frac{\alpha_{s} d_{s} \varrho_{s} \sqrt{\pi \Theta}}{\frac{3}{2}-\frac{e}{2}}
 $\\
-\bf \citet{GID-1994} &$ \displaystyle  \frac{4}{5} \alpha_{s}^{2} \rho_{s} d_{s} g_{0}(1+e) \sqrt{\frac{\Theta}{\pi}}+\frac{1}{15} \sqrt{\Theta \pi} \rho_{s} d_{s} g_{0}(1+e) \alpha_{s}^{2}+\frac{1}{6} \sqrt{\Theta \pi} \rho_{s} d_{s} \alpha_{s}+\frac{10}{96} \sqrt{\Theta \pi} \frac{\rho_{s} d_{s}}{(1+e) g_{0}}
+\bf \citet{GID-1994} &$ \displaystyle  \frac{4}{5} \alpha_{s}^{2} \varrho_{s} d_{s} g_{0}(1+e) \sqrt{\frac{\Theta}{\pi}}+\frac{1}{15} \sqrt{\Theta \pi} \varrho_{s} d_{s} g_{0}(1+e) \alpha_{s}^{2}+\frac{1}{6} \sqrt{\Theta \pi} \varrho_{s} d_{s} \alpha_{s}+\frac{10}{96} \sqrt{\Theta \pi} \frac{\varrho_{s} d_{s}}{(1+e) g_{0}}
 $\\
-\bf\citet{henrya} &$ \displaystyle \frac{4}{5}\epsilon_{s}^{2} \rho_{s} d_{s} g_{0}(1+e)\sqrt{\frac{\Theta}{\pi}}+\frac{1}{15} \sqrt{\Theta \pi}\frac{\rho_{s} d_{s} g_{0}(1+e)\left(\frac{3}{2}e-\frac{1}{2}\right)\epsilon_{s}^{2}}{\left(\frac{3}{2}-\frac{c}{2}\right)}+\frac{1}{6} \sqrt{\Theta \pi} \frac{\rho_{s} d_{s} \epsilon_{s}\left(\frac{1}{2}\left(1+\frac{\lambda_{m}f_{p}}{R}\right)+\frac{3}{4}e-\frac{1}{4}\right)}{\left(\frac{3}{2}-\frac{1}{2} e\right)\left(1+\frac{\lambda_{m}(p)}{R}\right)}+\frac{10}{96} \sqrt{\Theta \pi} \frac{\rho_{s}d_{s}}{(1+e)\left(\frac{3}{2}-\frac{1}{2} e\right)g_{0}\left(1+\frac{\lambda_{m} f_{p}}{R}\right)} $\\
+\bf\citet{henrya} &$ \displaystyle \frac{4}{5}\epsilon_{s}^{2} \varrho_{s} d_{s} g_{0}(1+e)\sqrt{\frac{\Theta}{\pi}}+\frac{1}{15} \sqrt{\Theta \pi}\frac{\varrho_{s} d_{s} g_{0}(1+e)\left(\frac{3}{2}e-\frac{1}{2}\right)\epsilon_{s}^{2}}{\left(\frac{3}{2}-\frac{c}{2}\right)}+\frac{1}{6} \sqrt{\Theta \pi} \frac{\varrho_{s} d_{s} \epsilon_{s}\left(\frac{1}{2}\left(1+\frac{\lambda_{m}f_{p}}{R}\right)+\frac{3}{4}e-\frac{1}{4}\right)}{\left(\frac{3}{2}-\frac{1}{2} e\right)\left(1+\frac{\lambda_{m}(p)}{R}\right)}+\frac{10}{96} \sqrt{\Theta \pi} \frac{\varrho_{s}d_{s}}{(1+e)\left(\frac{3}{2}-\frac{1}{2} e\right)g_{0}\left(1+\frac{\lambda_{m} f_{p}}{R}\right)} $\\
 \hline
 & \hspace{4.5cm} \bf Radial Function \boldsymbol{$g_0$} \\
 \hline\\
@@ -564,13 +554,13 @@ Table \ref{tab:PD} shows different correlations to calculate the pressure drop f
 \hline Correlations & Pipe Set up  \\
 \hline
 $ \displaystyle 
-\Delta \mathcal{P_\mathfrak{f}=\mathfrak{-f}\frac{\mathrm{\rho\mathfrak{_{W}}} \mathrm{L}}{\mathrm{D}} \frac{\mathrm{U\mathfrak{_{W}}}^\mathrm{{2}}}{\mathrm{2}}}
+\Delta \mathcal{P_\mathfrak{f}=\mathfrak{-f}\frac{\mathrm{\varrho\mathfrak{_{W}}} \mathrm{L}}{\mathrm{D}} \frac{\mathrm{U\mathfrak{_{W}}}^\mathrm{{2}}}{\mathrm{2}}}
 $ & Horizontal Pipe \\
 $ \displaystyle 
-\Delta \mathcal{P}=-\Delta \mathcal{P_\mathfrak{f}-\rho_\mathfrak{{W}} \mathfrak{g} \mathfrak{ L} \mathfrak{sin(\theta)}}
+\Delta \mathcal{P}=-\Delta \mathcal{P_\mathfrak{f}-\varrho_\mathfrak{{W}} \mathfrak{g} \mathfrak{ L} \mathfrak{sin(\theta)}}
 $ & Inclined Pipe \\
 $ \displaystyle 
-\Delta \mathcal{P} =-\Delta \mathcal{ P_\mathfrak{f}-\rho_\mathfrak{{W}} \mathfrak{g} \mathfrak{L}_\mathfrak{{inclined}} \mathfrak{sin(\theta)}- K_\mathfrak{{L}} \frac{\mathrm{\rho} U_\mathfrak{{W}}^\mathrm{{2}}}{\mathrm{2}}}
+\Delta \mathcal{P} =-\Delta \mathcal{ P_\mathfrak{f}-\varrho_\mathfrak{{W}} \mathfrak{g} \mathfrak{L}_\mathfrak{{inclined}} \mathfrak{sin(\theta)}- K_\mathfrak{{L}} \frac{\mathrm{\varrho} U_\mathfrak{{W}}^\mathrm{{2}}}{\mathrm{2}}}
 $ & Pipe with Bend   \\
 \hline
 \end{tabular}
@@ -602,12 +592,12 @@ In this work, the flow is characterized by a Reynolds number of order of $10^6$.
 However, wall functions are used to treat the boundary-layer development up to the wall. Eq.(\ref{k}) and Eq.(\ref{epsilon}) present the model variables, the turbulent kinetic energy k and the turbulence dissipation rate $\epsilon$ respectively:
 
 \begin{equation}
-\frac{\partial(\rho_W k_W)}{\partial t}+\frac{\partial\left(\rho_W k_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu_W+\frac{\mu_{t}}{\sigma_{k}}\right) \frac{\partial k_W}{\partial x_{j}}\right]+G_{k}+G_{b}-\rho_W \varepsilon_W+S_{k}
+\frac{\partial(\varrho_W k_W)}{\partial t}+\frac{\partial\left(\varrho_W k_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu_W+\frac{\mu_{t}}{\sigma_{k}}\right) \frac{\partial k_W}{\partial x_{j}}\right]+G_{k}+G_{b}-\varrho_W \varepsilon_W+S_{k}
 \label{k}
 \end{equation}
 
 \begin{equation}
-\frac{\partial(\rho_W \varepsilon_W)}{\partial t}+\frac{\partial\left(\rho_W \varepsilon_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu+\frac{\mu_{t}}{\sigma_{\varepsilon}}\right) \frac{\partial \varepsilon_W}{\partial x_{j}}\right]+\frac{C_{1 \varepsilon} \varepsilon_W}{k_W}\left(G_{k}+C_{3 \varepsilon} G_{b}\right)-C_{2 \varepsilon} \rho \frac{\varepsilon_{W}^{2}}{k_W}+S_{\varepsilon}
+\frac{\partial(\varrho_W \varepsilon_W)}{\partial t}+\frac{\partial\left(\varrho_W \varepsilon_W U_{W_i}\right)}{\partial x_{i}}=\frac{\partial}{\partial x_{j}}\left[\left(\mu+\frac{\mu_{t}}{\sigma_{\varepsilon}}\right) \frac{\partial \varepsilon_W}{\partial x_{j}}\right]+\frac{C_{1 \varepsilon} \varepsilon_W}{k_W}\left(G_{k}+C_{3 \varepsilon} G_{b}\right)-C_{2 \varepsilon} \varrho \frac{\varepsilon_{W}^{2}}{k_W}+S_{\varepsilon}
 \label{epsilon}
 \end{equation}
 
@@ -631,7 +621,7 @@ k_{P} =\frac{\sqrt{f {U_{W}^2 }}}{\sqrt{2 C\mu }}
 $y_{P}$ is the height to the center of the cell adjacent to the wall and it can be calculated from $y^+$ according to the Eq.(\ref{yp}).
 %
 \begin{equation}
-y_{p}=\frac{y^{+} \mu_W}{\rho_W\sqrt{f u_{W}}}
+y_{p}=\frac{y^{+} \mu_W}{\varrho_W\sqrt{f u_{W}}}
 \label{yp}
 \end{equation}
 %
@@ -651,7 +641,7 @@ For an internal pipe flow, this is usually \(\sim 7 \%\) of the pipe diameter. S
 \label{epsilon in}
 \end{equation}
 % %%%%%%%%%%%%%%%%%%%
-\chapter{Methodology}
+\section{Methodology}
 %
 After choosing the mathematical models necessary to simulate the diphasic flow, comes the part of the implementation under the CFD tool. 
 %
@@ -717,7 +707,7 @@ Figure \ref{horiz}(a) and \ref{horiz}(b), shows a 2D section and the 3D meshed g
 %
 GMSH software was used to generate a specific mesh which takes into account the near-wall refinement by calculating the height of the first cell on the wall, with a precise magnification ratio which is linked to $y^{+}$ while approaching the center of the pipe. 
 %
-The flow consists of water with a density $\rho=1000 kg/m^3$. 
+The flow consists of water with a density $\varrho=1000 kg/m^3$. 
 %
 The Wall roughness is set at 0.045 $mm$. The inlet velocity is in ranges of 1 to 3 $m/s$. 
 %
@@ -861,7 +851,7 @@ An attempt to simulate the behaviour of a sediment-water mixture during its tran
 %
 The geometry used consisted of a pipe of length L = 0.02 m, a diameter D = 0.0001 m. 
 %
-The flow is laminar with Re = 144,  , $\rho_S= 1,450  kg/m^3$, $\rho_W= 1,027  kg/m^3$, $V_{mixture} = 1 m/s$, $d_S= 70 \mu m$, $\mu_W = 0.00891  kg/m.s$, $\alpha_{0S} = 30 \%$, $P_0=10^5  Pa$. 
+The flow is laminar with Re = 144,  , $\varrho_S= 1,450  kg/m^3$, $\varrho_W= 1,027  kg/m^3$, $V_{mixture} = 1 m/s$, $d_S= 70 \mu m$, $\mu_W = 0.00891  kg/m.s$, $\alpha_{0S} = 30 \%$, $P_0=10^5  Pa$. 
 %
 Figure 6 and 7, show the 2D and 3D meshed geometry. OpenFOAM's meshing utility blockMesh was used to generate structured orthogonal meshes about 200 cells along the pipe.
 %
@@ -980,7 +970,7 @@ The sedimentary phase was also modeled as continuous and consecutive laws were a
  and its dissipation rate, \(\epsilon_{in }\), were also fixed as in Eq.(\ref{kin}) and Eq.(\ref{epsilon in}). 
  %
 \begin{equation}
- \dot{m}_{W}= \alpha_{\mathrm{W}} \rho_{W} U_{\mathrm{W}} A;\quad \dot{m}_{\mathrm{S}}= \alpha_{\mathrm{S}} \rho_{\mathrm{S}} U_{\mathrm{S}} A
+ \dot{m}_{W}= \alpha_{\mathrm{W}} \varrho_{W} U_{\mathrm{W}} A;\quad \dot{m}_{\mathrm{S}}= \alpha_{\mathrm{S}} \varrho_{\mathrm{S}} U_{\mathrm{S}} A
  \label{mass rate}
  \end{equation}
 %
@@ -1010,7 +1000,7 @@ The flow is characterized by high inlet velocities ranging up to 8 $m/s$.
 %
 Two diameters of particles are considered, along with different solid concentrations. 
 %
-The physical parameters used are sand density $\rho_s=2650$ $kg/m^3$, water density $\rho_W=1000$ $kg/m^3$, and water viscosity $\mu_w= 10^{-3} kg/m.s$. 
+The physical parameters used are sand density $\varrho_s=2650$ $kg/m^3$, water density $\varrho_W=1000$ $kg/m^3$, and water viscosity $\mu_w= 10^{-3} kg/m.s$. 
 %
 The radial distributions of sand particles for two inlet concentrations are presented in figure \ref{solid}. 
 %
